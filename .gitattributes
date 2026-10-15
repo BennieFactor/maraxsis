@@ -21,3 +21,4 @@ README.md export-ignore
 *.py export-ignore
 *.aup3 export-ignore
 *.xcf export-ignore
+*.psd export-ignore
