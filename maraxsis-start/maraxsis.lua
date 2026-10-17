@@ -29,7 +29,7 @@ utils.set_prerequisites("advanced-oil-processing", {"oil-processing", "productio
 utils.set_prerequisites("rocket-silo", {"processing-unit", "logistic-robotics", "advanced-material-processing-2", "maraxsis-project-seadragon"})
 utils.set_prerequisites("lubricant", {"coal-liquefaction"})
 utils.set_prerequisites("hydraulic-science-pack", {"maraxsis-wyrm-confinement", "chemical-science-pack"})
-utils.set_prerequisites("fission-reactor-equipment", {"maraxsis-salt-reactor", "power-armor", "utility-science-pack", "military-science-pack"})
+utils.set_prerequisites("fission-reactor-equipment", {"power-armor", "utility-science-pack", "military-science-pack"})
 utils.set_prerequisites("rocket-fuel", {"oil-gathering"})
 utils.set_prerequisites("railway", {"elevated-rail", "engine", "logistics-2"})
 utils.set_prerequisites("production-science-pack", {"productivity-module", "advanced-material-processing-2"})
@@ -63,7 +63,7 @@ utils.add_recipes("biochamber", {"maraxsis-nutrients-from-tropical-fish"})
 utils.add_recipes("low-density-structure", {"casting-low-density-structure"})
 utils.add_recipes("coal-liquefaction", {"coal-synthesis", "simple-coal-liquefaction", "heavy-oil-cracking", "light-oil-cracking"})
 utils.insert_recipe("coal-liquefaction", "oil-refinery", 1)
-utils.add_recipes("foundry", {"maraxsis-limestone-processing"})
+--utils.add_recipes("foundry", {"maraxsis-limestone-processing"})
 utils.add_recipes("space-platform-thruster", {"maraxsis-atmosphere"})
 utils.add_recipes("production-science-pack", {"rail"})
 utils.add_recipes("oil-gathering", {"lubricant"})
@@ -173,21 +173,21 @@ if not k2 then utils.set_packs("maraxsis-deepsea-research", hydraulic_science, 5
 utils.set_packs("cliff-explosives", logistic_science, 100, 30)
 utils.set_packs("maraxsis-wyrm-confinement", logistic_science, 100, 30)
 
-table.insert(data.raw["technology"]["planet-discovery-aquilo"].unit.ingredients, {"hydraulic-science-pack", 1})
-table.insert(data.raw["technology"]["captive-biter-spawner"].unit.ingredients, {"hydraulic-science-pack", 1})
-table.insert(data.raw["technology"]["foundation"].unit.ingredients, {"hydraulic-science-pack", 1})
-table.insert(data.raw["technology"]["legendary-quality"].unit.ingredients, {"hydraulic-science-pack", 1})
-table.insert(data.raw["technology"]["quantum-processor"].unit.ingredients, {"hydraulic-science-pack", 1})
-table.insert(data.raw["technology"]["railgun"].unit.ingredients, {"hydraulic-science-pack", 1})
-table.insert(data.raw["technology"]["fusion-reactor"].unit.ingredients, {"hydraulic-science-pack", 1})
-table.insert(data.raw["technology"]["fusion-reactor-equipment"].unit.ingredients, {"hydraulic-science-pack", 1})
+PlanetsLib.rro.soft_insert(data.raw["technology"]["planet-discovery-aquilo"].unit.ingredients, {"hydraulic-science-pack", 1})
+PlanetsLib.rro.soft_insert(data.raw["technology"]["captive-biter-spawner"].unit.ingredients, {"hydraulic-science-pack", 1})
+PlanetsLib.rro.soft_insert(data.raw["technology"]["foundation"].unit.ingredients, {"hydraulic-science-pack", 1})
+PlanetsLib.rro.soft_insert(data.raw["technology"]["legendary-quality"].unit.ingredients, {"hydraulic-science-pack", 1})
+PlanetsLib.rro.soft_insert(data.raw["technology"]["quantum-processor"].unit.ingredients, {"hydraulic-science-pack", 1})
+PlanetsLib.rro.soft_insert(data.raw["technology"]["railgun"].unit.ingredients, {"hydraulic-science-pack", 1})
+PlanetsLib.rro.soft_insert(data.raw["technology"]["fusion-reactor"].unit.ingredients, {"hydraulic-science-pack", 1})
+PlanetsLib.rro.soft_insert(data.raw["technology"]["fusion-reactor-equipment"].unit.ingredients, {"hydraulic-science-pack", 1})
 
-table.insert(data.raw.technology["maraxsis-hydro-plant"].effects, {
+PlanetsLib.rro.soft_insert(data.raw.technology["maraxsis-hydro-plant"].effects, {
     type = "unlock-quality",
     quality = "uncommon",
 })
 
-table.insert(data.raw.technology["maraxsis-hydro-plant"].effects, {
+PlanetsLib.rro.soft_insert(data.raw.technology["maraxsis-hydro-plant"].effects, {
     type = "unlock-quality",
     quality = "rare",
 })
@@ -196,31 +196,31 @@ table.insert(data.raw.technology["maraxsis-hydro-plant"].effects, {
 local new_ingredients = {}
 for _, ingredient in pairs(data.raw.recipe["maraxsis-hydro-plant"].ingredients) do
     if ingredient.name ~= "processing-unit" then
-        table.insert(new_ingredients, ingredient)
+        PlanetsLib.rro.soft_insert(new_ingredients, ingredient)
     end
 end
-table.insert(new_ingredients, {type = "item", name = "electronic-circuit", amount = 10})
+PlanetsLib.rro.soft_insert(new_ingredients, {type = "item", name = "electronic-circuit", amount = 10})
 data.raw.recipe["maraxsis-hydro-plant"].ingredients = new_ingredients
 
 -- remove agricultural tower from fishing tower
 local new_ingredients = {}
 for _, ingredient in pairs(data.raw.recipe["maraxsis-fishing-tower"].ingredients) do
     if ingredient.name ~= "agricultural-tower" then
-        table.insert(new_ingredients, ingredient)
+        PlanetsLib.rro.soft_insert(new_ingredients, ingredient)
     end
 end
-table.insert(new_ingredients, {type = "item", name = "steel-plate", amount = 10})
-table.insert(new_ingredients, {type = "item", name = "electronic-circuit", amount = 10})
+PlanetsLib.rro.soft_insert(new_ingredients, {type = "item", name = "steel-plate", amount = 10})
+PlanetsLib.rro.soft_insert(new_ingredients, {type = "item", name = "electronic-circuit", amount = 10})
 data.raw.recipe["maraxsis-fishing-tower"].ingredients = new_ingredients
 
 -- remove steel and green chips from agricultural tower
 local new_ingredients = {}
 for _, ingredient in pairs(data.raw.recipe["agricultural-tower"].ingredients) do
     if ingredient.name ~= "steel-plate" and ingredient.name ~= "electronic-circuit" then
-        table.insert(new_ingredients, ingredient)
+        PlanetsLib.rro.soft_insert(new_ingredients, ingredient)
     end
 end
-table.insert(new_ingredients, {type = "item", name = "maraxsis-fishing-tower", amount = 1})
+PlanetsLib.rro.soft_insert(new_ingredients, {type = "item", name = "maraxsis-fishing-tower", amount = 1})
 data.raw.recipe["agricultural-tower"].ingredients = new_ingredients
 
 for _, condition in pairs(data.raw.recipe["foundry"].surface_conditions) do
@@ -230,9 +230,9 @@ for _, condition in pairs(data.raw.recipe["foundry"].surface_conditions) do
     end
 end
 
-data.raw.recipe["maraxsis-pressure-dome"].categories = {"maraxsis-hydro-plant-or-assembling"}
-data.raw.recipe["biolubricant"].categories = {"maraxsis-hydro-plant-or-biochamber"}
-data.raw.recipe["refined-concrete"].categories = {"pressing"}
+data.raw.recipe["maraxsis-pressure-dome"].categories = {"maraxsis-hydro-plant","crafting"}
+data.raw.recipe["biolubricant"].categories = {"maraxsis-hydro-plant","organic"}
+data.raw.recipe["refined-concrete"].categories = {"crafting-with-fluid","metallurgy"}
 
 table.insert(data.raw.technology["maraxsis-glassworking"].effects, 1, {
     type = "unlock-space-location",

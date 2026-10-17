@@ -31,7 +31,7 @@ data:extend {{
 data:extend {{
     type = "recipe",
     name = "maraxsis-carbon-fiber-from-jelly",
-    categories = {"organic-or-hand-crafting"},
+    categories = {"hand-crafting","organic"},
     enabled = false,
     energy_required = 10,
     ingredients = {

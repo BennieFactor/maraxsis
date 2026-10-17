@@ -68,7 +68,7 @@ maraxsis.on_event(defines.events.on_script_trigger_effect, function(event)
     }
     energy_interface.destructible = false
     energy_interface.operable = false
-    energy_interface.minable = false
+    --energy_interface.minable = false
     local registration_number = script.register_on_object_destroyed(entity)
     storage.fresh_air_energy_interfaces[registration_number] = energy_interface
 end)

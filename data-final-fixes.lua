@@ -90,19 +90,22 @@ if data.raw.technology["legendary-quality"] and data.raw.technology["legendary-q
             "epic-quality"
         }
     })}
-
-    for _, ingredient in pairs(data.raw.technology["maraxsis-legendary-quality"].unit.ingredients) do
-        assert(type(ingredient) == "table")
-        if ingredient[1] == "cryogenic-science-pack" then
-            ingredient[1] = "hydraulic-science-pack"
-        end
-    end
+    PlanetsLib.rro.replace(data.raw.technology["maraxsis-legendary-quality"].unit.ingredients,
+    {"cryogenic-science-pack","_any"},
+    function(other) return {"hydraulic-science-pack",other[2]} end
+)
+    -- for _, ingredient in pairs(data.raw.technology["maraxsis-legendary-quality"].unit.ingredients) do
+    --     assert(type(ingredient) == "table")
+    --     if ingredient[1] == "cryogenic-science-pack" then
+    --         ingredient[1] = "hydraulic-science-pack"
+    --     end
+    -- end
 
     for _, technology in pairs(data.raw.technology) do
         if type(technology.prerequisites) == "table" then
             for _, prerequisite in pairs(technology.prerequisites) do
                 if prerequisite == "legendary-quality" then
-                    table.insert(technology.prerequisites, "maraxsis-legendary-quality")
+                    PlanetsLib.rro.soft_insert(technology.prerequisites, "maraxsis-legendary-quality")
                     break
                 end
             end
