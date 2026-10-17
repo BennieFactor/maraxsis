@@ -1,4 +1,4 @@
-require "prototypes.a-breath-of-fresh-air"
+require "maraxsis-start.prototypes.a-breath-of-fresh-air"
 
 data:extend {{
     type = "space-connection",
@@ -49,5 +49,3 @@ data:extend {{
     localised_name = {"item-name.carbon-fiber"},
     auto_recycle = false,
 }}
-
-APS.add_planet {name = "maraxsis", filename = "__maraxsis-start__/maraxsis.lua", technology = "planet-discovery-maraxsis"}

@@ -148,3 +148,7 @@ add_quality_factoriopedia_info(data.raw["roboport"]["maraxsis-regulator"], {
         return tostring(consumption_per_second) .. "/s"
     end}
 })
+
+if mods["any-planet-start"] and settings.startup["aps-planet"] and settings.startup["aps-planet"].value == "maraxsis" then
+    require "maraxsis-start.data-updates"
+end

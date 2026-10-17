@@ -28,7 +28,7 @@ local function fix_duplicate_water_shaders(surface)
     end
 end
 
-script.on_event(defines.events.on_player_created, function(event)
+maraxsis.on_event(defines.events.on_player_created, function(event)
     if not remote.interfaces["freeplay"] then return end
     local player = game.get_player(event.player_index)
     local surface = player.surface
@@ -41,7 +41,7 @@ script.on_event(defines.events.on_player_created, function(event)
     player.insert {name = "hydrogen-barrel", count = 80}
 end)
 
-script.on_init(function()
+maraxsis.on_event(maraxsis.events.on_init(), function()
     if not remote.interfaces["freeplay"] then return end
     remote.call("freeplay", "set_created_items", {})
     remote.call("freeplay", "set_ship_items", {
@@ -55,7 +55,7 @@ script.on_init(function()
     })
 end)
 
-script.on_event(defines.events.on_script_trigger_effect, function(event)
+maraxsis.on_event(defines.events.on_script_trigger_effect, function(event)
     if event.effect_id ~= "on_built_a_breath_of_fresh_air" then return end
     local entity = event.source_entity
     entity.destructible = false
@@ -73,7 +73,7 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
     storage.fresh_air_energy_interfaces[registration_number] = energy_interface
 end)
 
-script.on_event(defines.events.on_object_destroyed, function(event)
+maraxsis.on_event(defines.events.on_object_destroyed, function(event)
     if not storage.fresh_air_energy_interfaces then return end
     local energy_interface = storage.fresh_air_energy_interfaces[event.registration_number]
     if not energy_interface then return end

@@ -29,5 +29,11 @@ require "scripts.legendary-quality"
 
 require "compat.call-plumber"
 
+-- Register the maraxsis-start runtime behaviour only when Any Planet Start is
+-- active and Maraxsis was chosen as the starting planet.
+if script.active_mods["any-planet-start"] and settings.startup["aps-planet"] and settings.startup["aps-planet"].value == "maraxsis" then
+    require "maraxsis-start.control"
+end
+
 maraxsis.finalize_events()
 if script.active_mods["gvv"] then require("__gvv__.gvv")() end

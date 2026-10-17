@@ -1,7 +1,7 @@
 data:extend {{
     type = "item",
     name = "maraxsis-a-breath-of-fresh-air",
-    icon = "__maraxsis-start__/graphics/icons/a-breath-of-fresh-air.png",
+    icon = "__maraxsis__/maraxsis-start/graphics/icons/a-breath-of-fresh-air.png",
     icon_size = 64,
     subgroup = "extraction-machine",
     order = "z",
@@ -60,7 +60,7 @@ data:extend {{
     type = "assembling-machine",
     name = "maraxsis-a-breath-of-fresh-air",
     fixed_recipe = "maraxsis-a-breath-of-fresh-air",
-    icon = "__maraxsis-start__/graphics/icons/a-breath-of-fresh-air.png",
+    icon = "__maraxsis__/maraxsis-start/graphics/icons/a-breath-of-fresh-air.png",
     icon_size = 64,
     maraxsis_buildability_rules = {water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false},
     flags = {"placeable-neutral", "player-creation"},
@@ -103,7 +103,7 @@ data:extend {{
         animation = {
             layers = {
                 {
-                    filename = "__maraxsis-start__/graphics/entity/a-breath-of-fresh-air.png",
+                    filename = "__maraxsis__/maraxsis-start/graphics/entity/a-breath-of-fresh-air.png",
                     width = 1120 / 4,
                     height = 315,
                     frame_count = 4,
@@ -112,7 +112,7 @@ data:extend {{
                     tint = {0.9, 0.9, 0.9, 1}
                 },
                 {
-                    filename = "__maraxsis-start__/graphics/entity/a-breath-of-fresh-air-sh.png",
+                    filename = "__maraxsis__/maraxsis-start/graphics/entity/a-breath-of-fresh-air-sh.png",
                     width = 373,
                     height = 320,
                     frame_count = 1,
@@ -164,7 +164,7 @@ data:extend {{
 data:extend {{
     type = "electric-energy-interface",
     name = "maraxsis-a-breath-of-fresh-air-power",
-    icon = "__maraxsis-start__/graphics/icons/a-breath-of-fresh-air.png",
+    icon = "__maraxsis__/maraxsis-start/graphics/icons/a-breath-of-fresh-air.png",
     icon_size = 64,
     flags = {"placeable-neutral", "player-creation"},
     minable = nil,

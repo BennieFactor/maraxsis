@@ -1,1 +1,1 @@
-APS.set_fixed_choice("maraxsis")
+APS.add_choice("maraxsis")

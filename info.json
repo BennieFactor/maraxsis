@@ -13,6 +13,8 @@
     "PlanetsLib >= 1.20.3",
     "SpidertronPatrols >= 2.7.0",
     "FluidMustFlow >= 1.5.0",
+    "? any-planet-start >= 1.1.20",
+    "! maraxsis-start",
     "? Krastorio2-spaced-out",
     "(?) tenebris",
     "(?) tenebris-prime",
@@ -29,5 +31,6 @@
   "spoiling_required": true,
   "freezing_required": true,
   "segmented_units_required": true,
-  "expansion_shaders_required": true
+  "expansion_shaders_required": true,
+  "rail_bridges_required": true
 }

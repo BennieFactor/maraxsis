@@ -169,3 +169,9 @@ lava_lamp.resistances = {}
 for damage_type in pairs(data.raw["damage-type"]) do
     table.insert(lava_lamp.resistances, {type = damage_type, percent = 100})
 end
+
+-- Run the maraxsis-start final fixes last (after Any Planet Start's own final
+-- fixes and Maraxsis' collision-mask pass) when Maraxsis is the starting planet.
+if mods["any-planet-start"] and settings.startup["aps-planet"] and settings.startup["aps-planet"].value == "maraxsis" then
+    require "maraxsis-start.data-final-fixes"
+end
