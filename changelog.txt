@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.1
+Date: 2026-10-17
+  Bugfixes:
+    - Shift-placing pressure domes on lava places foundation ghosts on the lava. https://github.com/FluidNatalie/maraxsis/issues/22
+  Locale:
+    - Changed warning message when a tile(eg. lava) conflicts with placing the pressure dome. https://github.com/FluidNatalie/maraxsis/issues/22
+---------------------------------------------------------------------------------------------------
 Version: 1.40.0
 Date: 2026-10-17
   Features:
