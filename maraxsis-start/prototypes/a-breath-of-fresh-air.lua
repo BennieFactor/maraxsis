@@ -29,7 +29,7 @@ data:extend {{
         amount = 60,
         temperature = 25
     }},
-    category = "maraxsis-a-breath-of-fresh-air",
+    categories = {"maraxsis-a-breath-of-fresh-air"},
     energy_required = 1,
     auto_recycle = false,
     allow_decomposition = false,

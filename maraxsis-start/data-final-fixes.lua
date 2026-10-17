@@ -26,11 +26,11 @@ table.insert(sacrifice.ingredients, {
 })
 sacrifice.name = sacrifice.name .. "-sacrifice"
 sacrifice.main_product = "electromagnetic-plant"
-sacrifice.category = "crafting"
+sacrifice.categories = {"crafting"}
 sacrifice.localised_name = {"entity-name.electromagnetic-plant"}
 data:extend{sacrifice}
 table.insert(data.raw.technology["electromagnetic-plant"].effects, 1, {
     type = "unlock-recipe",
     recipe = sacrifice.name
 })
-data.raw.recipe["electromagnetic-plant"].category = "electromagnetics"
+data.raw.recipe["electromagnetic-plant"].categories = {"electromagnetics"}

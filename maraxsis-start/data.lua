@@ -12,7 +12,7 @@ data:extend {{
 data:extend {{
     type = "recipe",
     name = "maraxsis-tungsten-ore-dissolution",
-    category = "chemistry",
+    categories = {"chemistry"},
     enabled = false,
     energy_required = 5,
     ingredients = {
@@ -31,7 +31,7 @@ data:extend {{
 data:extend {{
     type = "recipe",
     name = "maraxsis-carbon-fiber-from-jelly",
-    category = "organic-or-hand-crafting",
+    categories = {"organic-or-hand-crafting"},
     enabled = false,
     energy_required = 10,
     ingredients = {
