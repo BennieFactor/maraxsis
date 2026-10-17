@@ -121,7 +121,7 @@ data.raw.tree["maraxsis-polylplast"].minable.results = {
 }
 
 -- increase the yield of the stone centrifuging recipe by 10x.
-data.raw.recipe["maraxsis-stone-centrifuging"].results[1].probability = 0.1
+data.raw.recipe["maraxsis-stone-centrifuging"].results[1].independent_probability = 0.1
 data.raw.technology["maraxsis-stone-centrifuging"].hidden = true
 
 data.raw.recipe["small-electric-pole"].enabled = false
