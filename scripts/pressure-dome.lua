@@ -793,10 +793,12 @@ function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity)
     for _, collision_box in pairs(pressure_dome_data.collision_boxes) do
         add_move(collision_box)
     end
+    
+    add_move(pressure_dome_data.light)
     add_move(pressure_dome_data.regulator)
     add_move(pressure_dome_data.regulator_fluidbox)
     add_move(pressure_dome_data.combinator)
-    add_move(pressure_dome_data.light)
+    
 
     table.sort(moves, function(a, b)
         local a_position, b_position = a.entity.position, b.entity.position

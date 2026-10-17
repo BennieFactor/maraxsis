@@ -165,7 +165,7 @@ data:extend {maraxsis.merge(data.raw["lamp"]["small-lamp"], {
     max_health = 10000,
     collision_box = collision_box(),
     selection_box = {{-0.01, -0.01}, {0.01, 0.01}},
-    selection_priority = 0,
+    selection_priority = 1,
     drawing_box = collision_box(),
     collision_mask = {layers = {}},
     selectable_in_game = true,
@@ -204,7 +204,6 @@ data.raw.lamp["maraxsis-pressure-dome-lamp"].energy_source.render_no_power_icon 
 if mods["even-pickier-dollies"] then
     local dome_lamp = data.raw.lamp["maraxsis-pressure-dome-lamp"]
     dome_lamp.selection_box = {{-2, -2}, {2, 2}}
-    dome_lamp.selection_priority = 100
 end
 
 data:extend {maraxsis.merge(data.raw["constant-combinator"]["constant-combinator"], {
