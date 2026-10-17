@@ -723,6 +723,130 @@ function maraxsis.rerender_all_domes()
     end
 end
 
+--- Finds the pressure dome that owns the given entity.
+---@param entity LuaEntity
+---@return table? pressure_dome_data
+local function find_pressure_dome_data_by_entity(entity)
+    for _, pressure_dome_data in pairs(storage.pressure_domes) do
+        if pressure_dome_data.regulator == entity or pressure_dome_data.light == entity then
+            return pressure_dome_data
+        end
+    end
+end
+
+--- Moves a single entity by an offset, ignoring build checks.
+---
+--- Most entities can simply be teleported. Transport belts and other
+--- belt-connectables refuse to teleport, so those are cloned onto the new
+--- position and the original is destroyed in their place.
+---@param entity LuaEntity
+---@param dx number
+---@param dy number
+---@return LuaEntity? moved_entity The entity at its new position, or nil if it could not be moved.
+local function move_entity_by(entity, dx, dy)
+    if not entity.valid then return nil end
+    local position = entity.position
+    local target = {x = position.x + dx, y = position.y + dy}
+    if entity.teleport(target) then return entity end
+
+    local clone = entity.clone {position = target, create_build_effect_smoke = false}
+    if clone then
+        entity.destroy()
+        return clone
+    end
+end
+
+--- Moves an entire pressure dome by an offset.
+---
+--- `moved_entity` is the entity Even Pickier Dollies has already teleported. It
+--- is skipped so that it does not get shifted a second time.
+---@param pressure_dome_data table
+---@param dx number
+---@param dy number
+---@param moved_entity LuaEntity?
+function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity)
+    local surface = pressure_dome_data.surface
+    if not surface.valid then return end
+    local position = pressure_dome_data.position
+
+    -- The dome moves as a single rigid body, so every entity it owns is shifted
+    -- by the same offset. Gather them all up and move them from the front of the
+    -- move towards the back. That way a cloned entity (see `move_entity_by`)
+    -- never tries to land on top of one that has not moved out of the way yet.
+    local moves = {}
+    local function add_move(entity, contained_index)
+        if entity and entity.valid and entity ~= moved_entity then
+            moves[#moves + 1] = {entity = entity, contained_index = contained_index}
+        end
+    end
+
+    local contained_entities = pressure_dome_data.contained_entities
+    for i, entity in pairs(contained_entities) do
+        if entity ~= pressure_dome_data.regulator
+            and entity ~= pressure_dome_data.regulator_fluidbox
+            and entity ~= pressure_dome_data.combinator
+            and entity ~= pressure_dome_data.light
+        then
+            add_move(entity, i)
+        end
+    end
+    for _, collision_box in pairs(pressure_dome_data.collision_boxes) do
+        add_move(collision_box)
+    end
+    add_move(pressure_dome_data.regulator)
+    add_move(pressure_dome_data.regulator_fluidbox)
+    add_move(pressure_dome_data.combinator)
+    add_move(pressure_dome_data.light)
+
+    table.sort(moves, function(a, b)
+        local a_position, b_position = a.entity.position, b.entity.position
+        return (a_position.x * dx + a_position.y * dy) > (b_position.x * dx + b_position.y * dy)
+    end)
+
+    -- Restore whatever was hidden underneath the dome floor at the old position.
+    unplace_tiles(pressure_dome_data)
+
+    pressure_dome_data.position = {x = position.x + dx, y = position.y + dy}
+
+    -- Lay the dome floor down at the new position before moving entities onto it.
+    place_tiles(pressure_dome_data)
+
+    for _, move in pairs(moves) do
+        local moved = move_entity_by(move.entity, dx, dy)
+        -- A cloned entity is a new entity, so update the dome's bookkeeping.
+        if moved and move.contained_index then
+            contained_entities[move.contained_index] = moved
+        end
+    end
+
+    -- Redraw the dome sprites at the new position (this also re-sorts them).
+    maraxsis.rerender_all_domes()
+end
+
+--- Called by Even Pickier Dollies after it teleports an entity.
+---@param event {moved_entity: LuaEntity, start_pos: MapPosition}
+local function on_epd_entity_moved(event)
+    local moved_entity = event.moved_entity
+    if not (moved_entity and moved_entity.valid) then return end
+    local start_pos = event.start_pos
+    if not start_pos then return end
+
+    local pressure_dome_data = find_pressure_dome_data_by_entity(moved_entity)
+    if not pressure_dome_data then return end
+
+    local position = moved_entity.position
+    local dx, dy = position.x - start_pos.x, position.y - start_pos.y
+    if dx == 0 and dy == 0 then return end
+
+    maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity)
+end
+
+-- Even Pickier Dollies defines the event id as a `custom-event` prototype, so it
+-- can be registered by name. This must happen before `maraxsis.finalize_events`.
+if script.active_mods["even-pickier-dollies"] then
+    maraxsis.on_event("even-pickier-dollies-on-entity-moved", on_epd_entity_moved)
+end
+
 maraxsis.on_event(maraxsis.events.on_built(), function(event)
     local entity = event.entity
     if not entity.valid or not domes[entity.name] then return end

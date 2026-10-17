@@ -196,6 +196,17 @@ data:extend {maraxsis.merge(data.raw["lamp"]["small-lamp"], {
 data.raw.lamp["maraxsis-pressure-dome-lamp"].energy_source.render_no_network_icon = false
 data.raw.lamp["maraxsis-pressure-dome-lamp"].energy_source.render_no_power_icon = false
 
+-- Even Pickier Dollies moves whichever entity the player has selected. The
+-- domes' regulator collides with the machines built inside a dome, so EPD
+-- refuses to move it. The dome lamp is an invisible entity that does not
+-- collide with anything and sits at the exact same position, so when EPD is
+-- installed we let it be selected instead and use it as the dome's drag handle.
+if mods["even-pickier-dollies"] then
+    local dome_lamp = data.raw.lamp["maraxsis-pressure-dome-lamp"]
+    dome_lamp.selection_box = {{-2, -2}, {2, 2}}
+    dome_lamp.selection_priority = 100
+end
+
 data:extend {maraxsis.merge(data.raw["constant-combinator"]["constant-combinator"], {
     type = "constant-combinator",
     name = "maraxsis-pressure-dome-combinator",

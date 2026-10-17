@@ -19,7 +19,8 @@
     "(?) SchallTransportGroup",
     "(?) modules-t4",
     "(?) call-plumber >= 1.0.0",
-    "(?) skewer_planet_vesta"
+    "(?) skewer_planet_vesta",
+    "(?) even-pickier-dollies"
   ],
   "migrates_from": [
     "maraxsis-classic"
