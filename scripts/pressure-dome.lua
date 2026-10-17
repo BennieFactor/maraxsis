@@ -764,7 +764,7 @@ end
 ---@param dx number
 ---@param dy number
 ---@param moved_entity LuaEntity?
-function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity)
+function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity,event)
     local surface = pressure_dome_data.surface
     if not surface.valid then return end
     local position = pressure_dome_data.position
@@ -793,7 +793,7 @@ function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity)
     for _, collision_box in pairs(pressure_dome_data.collision_boxes) do
         add_move(collision_box)
     end
-    
+
     add_move(pressure_dome_data.light)
     add_move(pressure_dome_data.regulator)
     add_move(pressure_dome_data.regulator_fluidbox)
@@ -814,10 +814,27 @@ function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity)
     place_tiles(pressure_dome_data)
 
     for _, move in pairs(moves) do
+        local start_pos = move.entity.position
+        local start_direction = move.entity.direction
+        local start_unit_number = move.entity.unit_number
         local moved = move_entity_by(move.entity, dx, dy)
         -- A cloned entity is a new entity, so update the dome's bookkeeping.
         if moved and move.contained_index then
+
             contained_entities[move.contained_index] = moved
+
+            ---@type EvenPickierDolliesRemoteInterfaceDollyMovedEvent
+            local event_data = {
+                player_index = event.player_index,
+                moved_entity = move.entity,
+                start_pos = start_pos,
+                start_direction = start_direction,
+                start_unit_number = start_unit_number,
+                tick = game.tick,
+                name = prototypes.custom_event["even-pickier-dollies-on-entity-moved"],
+            }
+
+            script.raise_event(prototypes.custom_event["even-pickier-dollies-on-entity-moved"], event_data)
         end
     end
 
@@ -840,7 +857,7 @@ local function on_epd_entity_moved(event)
     local dx, dy = position.x - start_pos.x, position.y - start_pos.y
     if dx == 0 and dy == 0 then return end
 
-    maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity)
+    maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity,event)
 end
 
 -- Even Pickier Dollies defines the event id as a `custom-event` prototype, so it
