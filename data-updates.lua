@@ -6,10 +6,7 @@ require "prototypes.entity.regulator-fluidbox"
 require "prototypes.fluid-void"
 require "prototypes.technology.promethium-quality"
 
-if not mods.space_age_galore then
-    require "prototypes.recipe.deepsea-research"
-end
-
+require "prototypes.recipe.deepsea-research"
 
 require "compat.aai-industry"
 require "compat.aai-signal-transmission"
@@ -27,17 +24,17 @@ require "compat.aai-programmable-structures"
 local function add_fuel_value(fluid, value)
     fluid = data.raw.fluid[fluid]
     if not fluid then return end
-    fluid.fuel_value = fluid.fuel_value or value
+    fluid.barrel_fuel_value = value
 end
 
-add_fuel_value("crude-oil", "1500kJ")
-add_fuel_value("petroleum-gas", "2000kJ")
-add_fuel_value("hydrogen", "2250kJ")
-add_fuel_value("heavy-oil", "2500kJ")
-add_fuel_value("light-oil", "3000kJ")
+add_fuel_value("crude-oil", "300kJ")
+add_fuel_value("petroleum-gas", "600kJ")
+add_fuel_value("hydrogen", "450kJ")
+add_fuel_value("heavy-oil", "500kJ")
+add_fuel_value("light-oil", "600kJ")
 
 for _, fluid in pairs(data.raw.fluid) do -- todo: check fluid fuel category
-    local fuel_value = fluid.fuel_value
+    local fuel_value = fluid.fuel_value or fluid.barrel_fuel_value
     if not fuel_value or type(fuel_value) ~= "string" then goto continue end
     local barrel = data.raw.item[fluid.name .. "-barrel"]
     if not barrel then goto continue end
@@ -45,8 +42,9 @@ for _, fluid in pairs(data.raw.fluid) do -- todo: check fluid fuel category
     local number_part, unit = fuel_value:match("^(%d+)(.*)")
     number_part = tonumber(number_part)
     if not number_part then goto continue end
-    barrel.fuel_value = tostring(number_part * 50) .. unit -- 50 fluid per barrel
-    barrel.fuel_category = barrel.fuel_category or "maraxsis-diesel"
+    barrel.fuel_value = tostring(number_part * 50 * 5) .. unit -- 50 fluid per barrel, 5x multiplier as fluid fuel values are rather low
+    barrel.fuel_categories = barrel.fuel_categories or {}
+    PlanetsLib.rro.soft_insert(barrel.fuel_categories, "maraxsis-diesel")
 
     barrel.fuel_acceleration_multiplier = data.raw.item["rocket-fuel"].fuel_acceleration_multiplier
     barrel.fuel_top_speed_multiplier = data.raw.item["rocket-fuel"].fuel_top_speed_multiplier
@@ -55,7 +53,6 @@ for _, fluid in pairs(data.raw.fluid) do -- todo: check fluid fuel category
     barrel.fuel_glow_color = data.raw.item["rocket-fuel"].fuel_acceleration_multiplier_quality_bonus
     barrel.fuel_glow_color = data.raw.item["rocket-fuel"].fuel_top_speed_multiplier_quality_bonus
 
-    maraxsis_constants.SUBMARINE_FUEL_SOURCES["maraxsis-diesel-submarine"][1] = barrel.fuel_category
     barrel.burnt_result = "barrel"
     ::continue::
 end
@@ -88,16 +85,24 @@ data:extend {{
     group = "intermediate-products",
 }}
 
-for recipe, category in pairs {
+for recipe_name, category in pairs {
     ["empty-maraxsis-atmosphere-barrel"] = "chemistry",
     ["maraxsis-atmosphere-barrel"] = "chemistry",
     ["empty-maraxsis-liquid-atmosphere-barrel"] = "cryogenics",
     ["maraxsis-liquid-atmosphere-barrel"] = "cryogenics",
 } do
-    local recipe = data.raw.recipe[recipe]
+    local recipe = data.raw.recipe[recipe_name]
     recipe.hidden_in_factoriopedia = false
     recipe.categories = {category}
     recipe.subgroup = "maraxsis-atmosphere-barreling"
+
+    -- Barrelling must never be boosted by productivity. Some mods, such as
+    -- K2SO, add machines with innate productivity bonuses (e.g. the advanced
+    -- chemical plant). Machine productivity ignores `allow_productivity`, so
+    -- without an explicit limit these recipes would create free barrels and
+    -- fluid out of nowhere. https://github.com/FluidNatalie/maraxsis/issues/32
+    recipe.allow_productivity = false
+    recipe.maximum_productivity = 0
 end
 data.raw.recipe["empty-maraxsis-atmosphere-barrel"].results[1].temperature = 25
 

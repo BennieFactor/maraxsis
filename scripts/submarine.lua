@@ -2,13 +2,7 @@ local TRENCH_MOVEMENT_FACTOR = maraxsis_constants.TRENCH_MOVEMENT_FACTOR
 local SUBMARINES = maraxsis_constants.SUBMARINES
 
 local function trench_generation_sanity_check()
-    local trench = game.surfaces["maraxsis-trench"]
-    local maraxsis = game.surfaces["maraxsis"]
-    if trench and maraxsis then
-        local mgs = trench.map_gen_settings
-        mgs.seed = maraxsis.map_gen_settings.seed
-        trench.map_gen_settings = mgs
-    end
+    maraxsis.sync_trench_map_seed()
 end
 
 maraxsis.on_event(maraxsis.events.on_init(), function()
@@ -193,8 +187,39 @@ maraxsis.register_delayed_function("post_sub_teleport_inventory_restoration", fu
     remove_hidden_toolbelt_equipment()
     transfer_inventory_back_to_submarine()
 end)
-local function teleport_submarine(submarine, target_position, target_surface)
+
+local function teleport_submarine(submarine, target_position, target_surface,has_player)
     local grid = submarine.grid
+    if has_player then
+        for i = 1,64 do
+        local theta = i*(2/64)*math.pi
+        local x = target_position.x + 2*math.cos(theta)
+        local y = target_position.y + 2*math.sin(theta)
+        target_surface.create_trivial_smoke{
+            name = "maraxsis-bubbles",
+            position = {x=x,y=y}
+        }
+        end
+        for i = 1,96 do
+            local theta = i*(2/96)*math.pi
+            local x = target_position.x + 2.5*math.cos(theta)
+            local y = target_position.y + 2.5*math.sin(theta)
+            target_surface.create_trivial_smoke{
+                name = "maraxsis-bubbles",
+                position = {x=x,y=y}
+            }
+        end
+        for i = 1,129 do
+            local theta = i*(2/128)*math.pi
+            local x = target_position.x + 3*math.cos(theta)
+            local y = target_position.y + 3*math.sin(theta)
+            target_surface.create_trivial_smoke{
+                name = "maraxsis-bubbles",
+                position = {x=x,y=y}
+            }
+        end
+    end
+    
     if not grid or grid.inventory_bonus == 0 then
         submarine.teleport(target_position, target_surface, true, false)
         return
@@ -225,13 +250,15 @@ local function descend_or_ascend(submarine)
     if not target_position then return false end
 
     local passenger, driver = submarine.get_passenger(), submarine.get_driver()
-
+    local has_player = false
     if passenger and not passenger.is_player() then
         passenger = passenger.player
+        has_player = true
     end
 
     if driver and not driver.is_player() then
         driver = driver.player
+        has_player = true
     end
 
     local old_surface = submarine.surface
@@ -250,7 +277,7 @@ local function descend_or_ascend(submarine)
     end
 
     trench_generation_sanity_check()
-    teleport_submarine(submarine, target_position, target_surface)
+    teleport_submarine(submarine, target_position, target_surface,has_player)
 
     for _, player in pairs(players_to_open_gui) do
         if player.surface ~= target_surface then
@@ -321,12 +348,35 @@ local function clean_array_of_invalid_luaobjects(array)
     return new_table
 end
 
+maraxsis.on_event(maraxsis.events.on_init(), function()
+    storage.players_on_maraxsis = {}
+    for i,player in pairs(game.players) do
+        if player.surface.name == "maraxsis" then
+            storage.players_on_maraxsis[i] = {player=player}
+        end
+    end
+    storage.players_on_maraxsis_trench = {}
+    for i,player in pairs(game.players) do
+        if player.surface.name == "maraxsis-trench" then
+            storage.players_on_maraxsis_trench[i] = {player=player}
+        end
+    end
+end)
+
 maraxsis.on_event(defines.events.on_player_changed_surface, function(event)
+    local player = game.get_player(event.player_index)
+    local cursor_stack = player.cursor_stack
+    storage.players_on_maraxsis[event.player_index] = nil
+    storage.players_on_maraxsis_trench[event.player_index] = nil
+    if player.surface.name == "maraxsis" then
+        storage.players_on_maraxsis[event.player_index] = {player = player}
+    elseif player.surface.name == "maraxsis-trench" then
+        storage.players_on_maraxsis_trench[event.player_index] = {player = player}
+    end
+
     local spidertrons = storage.previous_spidertron_remote_selection[event.player_index]
     if not spidertrons then return end
     spidertrons = clean_array_of_invalid_luaobjects(spidertrons)
-    local player = game.get_player(event.player_index)
-    local cursor_stack = player.cursor_stack
     if not cursor_stack or not cursor_stack.valid_for_read then return end
     if cursor_stack.type ~= "spidertron-remote" then return end
     player.spidertron_remote_selection = player.spidertron_remote_selection or spidertrons

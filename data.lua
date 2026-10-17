@@ -4,6 +4,7 @@ _G.maraxsis = {}
 _G.maraxsis_constants = data.raw["mod-data"]["maraxsis-constants"].data
 require "lib.lib"
 
+require "prototypes.damage-types"
 require "prototypes.spidertron-patrols"
 require "prototypes.entity.water-shader"
 require "prototypes.entity.submarine"
@@ -39,18 +40,18 @@ require "prototypes.technology.omega-3"
 require "prototypes.technology.stone-centrifuging"
 require "prototypes.technology.deepsea-research"
 require "prototypes.recipe.recipes"
-require "prototypes.recipe.deepsea-research"
 
 require "prototypes.circuit-connector-definitions"
 require "prototypes.tiles"
 require "prototypes.planet.space-location"
+require "prototypes.nuke-effects"
 require "prototypes.achievements"
 require "prototypes.custom-input"
 require "prototypes.music"
 require "prototypes.tips-and-tricks"
 
 require "compat.krastorio-2"
-
+ 
 data.raw["mining-drill"]["burner-mining-drill"].maraxsis_buildability_rules = {water = false, dome = false, coral = false, trench = false, trench_entrance = false, trench_lava = false}
 data.raw["assembling-machine"]["chemical-plant"].maraxsis_buildability_rules = {water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false}
 data.raw["electric-energy-interface"]["electric-energy-interface"].maraxsis_buildability_rules = {water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false}

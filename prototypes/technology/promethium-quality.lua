@@ -40,6 +40,7 @@ local function build_promethium_quality(i, prerequisites, count, q, energy_requi
         can_set_quality = false,
         auto_recycle = false,
         main_product = science_pack,
+        surface_conditions = table.deepcopy(data.raw.recipe["promethium-science-pack"].surface_conditions)
     }}
 
     data:extend {{
@@ -77,7 +78,7 @@ end
 local seen = {}
 local i = 1
 local q = data.raw.quality.normal
-local count = 5000000
+local count = 50000
 local energy_required = 8
 local prerequisites = {"promethium-science-pack", "maraxsis-omega_3"}
 while true do

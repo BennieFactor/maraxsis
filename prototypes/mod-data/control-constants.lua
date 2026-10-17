@@ -37,6 +37,7 @@ local SUBMARINE_FUEL_SOURCES = {
     ["maraxsis-nuclear-submarine"] = {"nuclear", "nuclear-fuel"},
 }
 
+--- Entity types that can be flooded.
 local DOME_DISABLEABLE_TYPES = {
     ["assembling-machine"] = true,
     ["furnace"] = true,
@@ -51,13 +52,10 @@ local DOME_DISABLEABLE_TYPES = {
     ["boiler"] = true,
 }
 
+--- Entities that need a pressure dome but are immune to flooding. These work
+--- in an un-atmosphere'd dome.
 local DOME_EXCLUDED_FROM_DISABLE = {
-    ["chemical-plant"] = true,
-    ["maraxsis-hydro-plant"] = true,
-    ["maraxsis-hydro-plant-extra-module-slots"] = true,
-    ["maraxsis-conduit"] = true,
     ["maraxsis-oversized-steam-turbine"] = true,
-    ["maraxsis-a-breath-of-fresh-air"] = true,
 }
 
 local SAND_ITEM_NAME = "sand"
@@ -68,6 +66,10 @@ for i = 1, 15 do
     TROPICAL_FISH_NAMES[i] = name
 end
 
+local PRESSURE_DOMES = {
+    
+}
+
 data:extend {{
     type = "mod-data",
     name = "maraxsis-constants", --Data that was previously defined in a control-level script, now defined in data, allowing other mods to configure these constants.
@@ -76,6 +78,7 @@ data:extend {{
         -- This data is called in scripts.constants.
         TRENCH_MOVEMENT_FACTOR = TRENCH_MOVEMENT_FACTOR,
         SUBMARINES = SUBMARINES,
+        PRESSURE_DOMES = PRESSURE_DOMES,
         TRENCH_SURFACE_NAME = TRENCH_SURFACE_NAME,
         MARAXSIS_SURFACE_NAME = MARAXSIS_SURFACE_NAME,
         MARAXSIS_SURFACES = MARAXSIS_SURFACES,
@@ -87,6 +90,7 @@ data:extend {{
         TRENCH_ENTRANCE_ELEVATION = TRENCH_ENTRANCE_ELEVATION,
         TROPICAL_FISH_NAMES = TROPICAL_FISH_NAMES,
         SAND_ITEM_NAME = SAND_ITEM_NAME,
+        NEEDS_DOME = {}, -- populated by prototypes/collision-mask.lua
         DEGRADATION_ENABLED = true -- https://github.com/notnotmelon/maraxsis/issues/409
     }
 }}

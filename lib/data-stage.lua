@@ -1,5 +1,5 @@
 -- Adds helper functions for data stage. Shared across all pymods and adapted for use in maraxsis
-
+local table = require("lib.table")
 maraxsis.on_event = function() end
 
 ---Returns a 1x1 empty image.
@@ -39,15 +39,23 @@ maraxsis.surface_conditions = function()
     return {{
         property = "pressure",
         min = 200000,
-        max = 400000,
+        max = 800000,
     }}
 end
 
 maraxsis.trench_surface_conditions = function()
     return {{
         property = "pressure",
-        min = 400000,
-        max = 400000,
+        min = 800000,
+        max = 800000,
+    }}
+end
+
+maraxsis.shallow_surface_conditions = function()
+    return {{
+        property = "pressure",
+        min = 200000,
+        max = 200000,
     }}
 end
 
@@ -71,4 +79,13 @@ maraxsis.shorten_localised_string = function(localised_string)
     end
 
     return {"", maraxsis.shorten_localised_string(first_half), maraxsis.shorten_localised_string(second_half)}
+end
+
+--- The position in a nuke's target effects right after it destroys cliffs, or
+--- the end of the list if it doesn't.
+--- @param target_effects table
+--- @return integer
+maraxsis.index_after_destroy_cliffs = function(target_effects)
+    local _, index = table.find(target_effects, function(effect) return effect.type == "destroy-cliffs" end)
+    return index and index + 1 or #target_effects + 1
 end

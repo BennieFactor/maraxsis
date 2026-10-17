@@ -1,4 +1,4 @@
-[![foundrygg.com](https://img.shields.io/badge/foundrygg-4a1402?style=for-the-badge&logo=vercel&logoColor=white)](https://foundrygg.com) [![](https://img.shields.io/badge/Discord-Community-blue?style=for-the-badge)](https://discord.gg/jv8CZtCh5Y) [![](https://img.shields.io/badge/dynamic/json?color=orange&label=Factorio&query=downloads_count&suffix=%20downloads&url=https%3A%2F%2Fmods.factorio.com%2Fapi%2Fmods%2Fmaraxsis&style=for-the-badge)](https://mods.factorio.com/mod/maraxsis) [![](https://img.shields.io/github/issues/notnotmelon/maraxsis?label=Bug%20Reports&style=for-the-badge)](https://github.com/notnotmelon/maraxsis/issues) [![](https://img.shields.io/github/issues-pr/notnotmelon/maraxsis?label=Pull%20Requests&style=for-the-badge)](https://github.com/notnotmelon/maraxsis/pulls)
+[![foundrygg.com](https://img.shields.io/badge/foundrygg-4a1402?style=for-the-badge&logo=vercel&logoColor=white)](https://foundrygg.com) [![](https://img.shields.io/badge/Discord-Community-blue?style=for-the-badge)](https://discord.gg/jv8CZtCh5Y) [![](https://img.shields.io/badge/dynamic/json?color=orange&label=Factorio&query=downloads_count&suffix=%20downloads&url=https%3A%2F%2Fmods.factorio.com%2Fapi%2Fmods%2Fmaraxsis&style=for-the-badge)](https://mods.factorio.com/mod/maraxsis) [![](https://img.shields.io/github/issues/FluidNatalie/maraxsis?label=Bug%20Reports&style=for-the-badge)](https://github.com/FluidNatalie/maraxsis/issues) [![](https://img.shields.io/github/issues-pr/FluidNatalie/maraxsis?label=Pull%20Requests&style=for-the-badge)](https://github.com/FluidNatalie/maraxsis/pulls)
 
 ![](https://assets-mod.factorio.com/assets/3fe1f0f687b4d734c9d03546d0f15ce8005729cb.png)
 
@@ -100,7 +100,7 @@ Maraxsis would not be possible without the help of these amazing, fantastic, inc
  - Tropical Fish Pack - [ZivixLLC](https://github.com/ZivixLLC)
  - Hydro Plant, Regulator, Geothermal Generator, & Conduit Graphics - [Hurricane](https://mods.factorio.com/user/Hurricane046)
  - Submarine & Nuclear Submarine - [keptin](https://www.turbosquid.com/Search/Artists/keptin)
- - Pressure Dome - [KaueNP](https://github.com/KaueNP)
+ - Pressure Dome Graphics - [KaueNP](https://github.com/KaueNP)
  - Sonar - [fishbus](https://github.com/fishbus)
  - Coral Reef - [Galdoc](https://github.com/Galdoc)
  - Devops & CI - [fgardt](https://github.com/fgardt)
@@ -109,6 +109,9 @@ Maraxsis would not be possible without the help of these amazing, fantastic, inc
  - Fishing tower logic - [Lord Miguel](https://mods.factorio.com/mod/quality-trees)
  - Rocket silo logic - [Powerscooter](https://mods.factorio.com/mod/Alternative_Rocket_Sprite_Extension), [LoupAndSnoop](https://mods.factorio.com/mod/rubia)
  - Sand extractor logic - [Nicholas Gower](https://github.com/nicholasgower/planet-muluna/blob/main/scripts/sand-extractor.lua)
+ - Pressure Dome code reworks - [Blushies](https://github.com/FluidNatalie/maraxsis/commits?author=blushies) and [Nicholas Gower](https://github.com/FluidNatalie/maraxsis/commits?author=nicholasgower)
+ - "Change level" button - [Nicholas Gower](https://github.com/nicholasgower)
+ - Performance improvements - [Nicholas Gower] (https://github.com/nicholasgower)
 
 #### Companion Mods
  - PlanetsLib - [thesixthroc](https://github.com/danielmartin0), [Nicholas Gower](https://github.com/nicholasgower), [Frontrider](https://github.com/Frontrider)

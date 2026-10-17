@@ -1,3 +1,5 @@
+local table = require("lib.table")
+
 for _, lab in pairs(data.raw.lab) do
     for _, input in pairs(lab.inputs or {}) do
         if input == "cryogenic-science-pack" then
@@ -16,21 +18,18 @@ for _, lab in pairs(data.raw.lab) do
 end
 
 if settings.startup["maraxsis-add-hydraulic-science"].value then
-    local function add_hydraulic_pack(tech_name, direct_prereq)
+    local function add_hydraulic_pack(tech_name)
         local tech = data.raw.technology[tech_name]
         if not tech then return end
 
         if tech.unit and tech.unit.ingredients then table.insert(tech.unit.ingredients, {"hydraulic-science-pack", 1}) end
-        if direct_prereq and tech.prerequisites then table.insert(tech.prerequisites, "maraxsis-project-seadragon") end
     end
 
-    add_hydraulic_pack("promethium-science-pack", false)
-    if mods["Krastorio2-spaced-out"] then
-        table.insert(data.raw["technology"]["promethium-science-pack"].prerequisites, "kr-quantum-computer")
-    else
-        table.insert(data.raw["technology"]["promethium-science-pack"].prerequisites, "maraxsis-deepsea-research")
-    end
-    add_hydraulic_pack("research-productivity", false)
+    add_hydraulic_pack("stellar-discovery-solar-system-edge")
+    add_hydraulic_pack("promethium-science-pack")
+    add_hydraulic_pack("research-productivity")
+
+    table.insert(data.raw["technology"]["stellar-discovery-solar-system-edge"].prerequisites, "maraxsis-project-seadragon")
 end
 
 local function insert_hydro_plant(recipe)
@@ -86,22 +85,6 @@ data.raw.technology["spidertron"].effects = new_spidertron_effects
 insert_hydro_plant(data.raw.recipe["ice-melting"])
 insert_hydro_plant(data.raw.recipe["advanced-thruster-fuel"])
 insert_hydro_plant(data.raw.recipe["advanced-thruster-oxidizer"])
-
--- https://github.com/notnotmelon/maraxsis/issues/23
-for _, projectile in pairs(data.raw.projectile) do
-    local _, target_effects = pcall(function() return projectile.action.action_delivery.target_effects end)
-    if not target_effects or type(target_effects) ~= "table" then goto continue end
-    for _, effect in pairs(target_effects) do
-        if type(effect) == "table" and effect.type == "set-tile" then
-            effect.tile_collision_mask = effect.tile_collision_mask or {layers = {}}
-            effect.tile_collision_mask.layers[maraxsis_underwater_collision_mask] = true
-            effect.tile_collision_mask.layers[maraxsis_coral_collision_mask] = true
-            effect.tile_collision_mask.layers[maraxsis_lava_collision_mask] = true
-            effect.tile_collision_mask.layers[maraxsis_dome_collision_mask] = true
-        end
-    end
-    ::continue::
-end
 
 -- fix equipment grids for the abyssal diving gear
 local tank = data.raw.car.tank

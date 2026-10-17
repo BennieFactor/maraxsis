@@ -1,5 +1,6 @@
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
 local sounds = require("__base__.prototypes.entity.sounds")
+local constants = require "__FluidMustFlow__.prototypes.constants"
 
 data:extend {{
     type = "item",
@@ -231,6 +232,7 @@ data:extend {{
             pipe_connections = {
                 {flow_direction = "input-output", direction = defines.direction.south, position = {0, 0}, connection_type = "linked", linked_connection_id = 0, connection_category = "ducts"},
             },
+            max_pipeline_extent = constants.extent,
             production_type = "input",
             filter = "maraxsis-supercritical-steam",
         },
@@ -285,7 +287,7 @@ data:extend {{
             percent = 70
         }
     },
-    max_fluid_usage = 725 / second, -- at normal quality
+    max_fluid_usage = 72.5 / second, -- at normal quality
     collision_box = {{-1.25, -2.35 - 2}, {1.25, 2.35 + 2}},
     selection_box = {{-1.5, -2.5 - 2}, {1.5, 2.5 + 2}},
     damaged_trigger_effect = hit_effects.entity(),
@@ -299,6 +301,7 @@ data:extend {{
             {flow_direction = "input-output", direction = defines.direction.west,  position = {-1, -1.5}, connection_category = "ducts"},
             {flow_direction = "input-output", direction = defines.direction.south, position = {0, 0},   connection_type = "linked",                   linked_connection_id = 0, connection_category = "ducts"},
         },
+        max_pipeline_extent = constants.extent,
         production_type = "input",
         filter = "maraxsis-supercritical-steam",
     },

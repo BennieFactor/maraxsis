@@ -1,5 +1,5 @@
+local constants = require "__FluidMustFlow__.prototypes.constants"
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
-local item_sounds = require("__base__.prototypes.item_sounds")
 
 data:extend {{
     type = "item",
@@ -193,6 +193,7 @@ data:extend { {
             pipe_connections = {
                 { connection_category = "ducts", direction = defines.direction.south, flow_direction = "input-output", position = { 0, 2.5 } },
             },
+            max_pipeline_extent = constants.extent,
             secondary_draw_orders = {north = -1, west = -1, east = -1},
         },
         {
@@ -203,6 +204,7 @@ data:extend { {
             pipe_connections = {
                 { connection_category = "ducts", direction = defines.direction.north, flow_direction = "input-output", position = { 0, -2.5 } },
             },
+            max_pipeline_extent = constants.extent,
             secondary_draw_orders = {north = -1, west = -1, east = -1},
         },
         {
@@ -213,6 +215,7 @@ data:extend { {
             pipe_connections = {
                 { connection_category = "ducts", direction = defines.direction.east, flow_direction = "input-output", position = { 2.5, 0 } }
             },
+            max_pipeline_extent = constants.extent,
             secondary_draw_orders = {north = -1, west = -1, east = -1},
         },
         {
@@ -223,6 +226,7 @@ data:extend { {
             pipe_connections = {
                 { connection_category = "ducts", direction = defines.direction.west, flow_direction = "input-output", position = { -2.5, 0 } },
             },
+            max_pipeline_extent = constants.extent,
             secondary_draw_orders = {north = -1, west = -1, east = -1},
         },
     },
@@ -244,6 +248,12 @@ data:extend { {
     icon_draw_specification = { scale = 1.75, shift = { 0, -0.3 } },
     energy_usage = "1W",
     collision_mask = { layers = { object = true, ground_tile = true } },
+    tile_buildability_rules = {
+        {
+            required_tiles = { layers = { lava_tile = true } },
+            area = { { -2.9, -2.9 }, { 2.9, 2.9 } },
+        },
+    },
 } }
 
 data:extend {{
@@ -251,7 +261,7 @@ data:extend {{
     name = "maraxsis-supercritical-steam",
     icon = "__maraxsis__/graphics/icons/supercritical-steam.png",
     icon_size = 64,
-    default_temperature = 2000,
+    default_temperature = 20000,
     max_temperature = 20000,
     heat_capacity = (225 / 6525) .. "kJ",
     base_flow_rate = data.raw.fluid.steam.base_flow_rate,

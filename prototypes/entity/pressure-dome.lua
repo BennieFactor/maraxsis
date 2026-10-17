@@ -1,5 +1,33 @@
+local table = require("lib.table")
+
+maraxsis_constants.PRESSURE_DOMES["maraxsis-pressure-dome"] = {
+        octagon_size = 16.5,
+        corner_size = 7,
+        diagonal_offset = 4.75,
+        PRESSURE_DOME_TILE = "maraxsis-pressure-dome-tile",
+        regulator = "maraxsis-regulator",
+        pressure_dome = "maraxsis-pressure-dome",
+        dome_collider = "maraxsis-pressure-dome-collision",
+        regulator_fluidbox_prefix = "maraxsis-regulator-fluidbox-",
+        sprite = "maraxsis-pressure-dome-sprite",
+        base_sprite = "maraxsis-pressure-dome-base-sprite",
+        lamp = "maraxsis-pressure-dome-lamp",
+        combinator = "maraxsis-pressure-dome-combinator",
+        recipe = "maraxsis-pressure-dome",
+    }
+local base_dome_params = maraxsis_constants.PRESSURE_DOMES["maraxsis-pressure-dome"]
+
 local dome = {
-    filename = "__maraxsis__/graphics/entity/pressure-dome/pressure-dome.png",
+    filename = "__maraxsis__/graphics/entity/pressure-dome/pressure-dome-cage.png",
+    width = 1344,
+    height = 1344,
+    scale = 0.935,
+    shift = {0, -1.25-8/32},
+    flags = {"no-scale"},
+}
+
+local dome_base = {
+    filename = "__maraxsis__/graphics/entity/pressure-dome/pressure-dome-base.png",
     width = 1344,
     height = 1344,
     scale = 0.935,
@@ -11,7 +39,7 @@ local light_2 = {
     filename = "__core__/graphics/light-medium.png",
     width = 300,
     height = 300,
-    scale = 7,
+    scale = base_dome_params.corner_size,
     shift = {0, 0.3},
     draw_as_light = true,
 }
@@ -21,18 +49,19 @@ local base_shadow = {
     width = 1344,
     height = 1344,
     scale = 0.935,
-    shift = {0, -1.25},
+    shift = {0, -1.25-8/32},
     flags = {"no-scale"},
     draw_as_shadow = true,
 }
 
 local cage_shadow = {
-    filename = "__maraxsis__/graphics/entity/pressure-dome/cage-shadow.png",
+    filename = "__maraxsis__/graphics/entity/pressure-dome/pressure-dome-shadow.png",
     width = 1344,
     height = 1344,
     scale = 0.935,
-    shift = {0, -1.25},
+    shift = {0, -1.25-8/32},
     flags = {"no-scale"},
+    draw_as_shadow = true,
 }
 
 data:extend {{
@@ -50,7 +79,7 @@ data:extend {{
     enabled = false,
     ingredients = {
         {type = "item", name = "pipe",                 amount = 30},
-        {type = "item", name = "maraxsis-glass-panes", amount = 5000},
+        {type = "item", name = "maraxsis-glass-panes", amount = 1000},
         {type = "item", name = "tungsten-plate",       amount = 100},
     },
     results = {
@@ -87,7 +116,7 @@ data:extend {{
     max_health = 10000,
     collision_box = collision_box(),
     minable = {mining_time = 1, result = "maraxsis-pressure-dome"},
-    selection_box = {{-16.5, -16.5}, {16.5, 16.5}},
+    selection_box = {{-base_dome_params.octagon_size, -base_dome_params.octagon_size}, {base_dome_params.octagon_size, base_dome_params.octagon_size}},
     drawing_box = collision_box(),
     collision_mask = {colliding_with_tiles_only = true, layers = {["empty_space"] = true}},
     render_layer = "higher-object-above",
@@ -96,6 +125,7 @@ data:extend {{
         layers = table.array_combine({
             cage_shadow,
             base_shadow,
+            dome_base,
             dome,
         }, table.deepcopy(data.raw.roboport["maraxsis-regulator"].integration_patch.layers))
     },
@@ -114,6 +144,11 @@ data:extend {{
     type = "sprite",
     name = "maraxsis-pressure-dome-sprite",
     layers = {cage_shadow, base_shadow, dome},
+},
+{
+    type = "sprite",
+    name = "maraxsis-pressure-dome-base-sprite",
+    layers = {dome_base},
 }}
 
 data:extend {maraxsis.merge(data.raw["lamp"]["small-lamp"], {
@@ -121,14 +156,11 @@ data:extend {maraxsis.merge(data.raw["lamp"]["small-lamp"], {
     name = "maraxsis-pressure-dome-lamp",
     factoriopedia_alternative = "maraxsis-pressure-dome",
     quality_indicator_scale = 0,
-    localised_name = {"entity-name.maraxsis-pressure-dome"},
     localised_description = {"entity-description.maraxsis-pressure-dome"},
     remove_decoratives = "false",
-    hidden_in_factoriopedia = true,
+    hidden = true,
     surface_conditions = maraxsis.surface_conditions(),
     minable = "nil",
-    icon = "__maraxsis__/graphics/icons/pressure-dome.png",
-    icon_size = 64,
     flags = {"placeable-player", "player-creation", "not-on-map", "not-blueprintable"},
     max_health = 10000,
     collision_box = collision_box(),
@@ -168,7 +200,6 @@ data:extend {maraxsis.merge(data.raw["constant-combinator"]["constant-combinator
     type = "constant-combinator",
     name = "maraxsis-pressure-dome-combinator",
     factoriopedia_alternative = "maraxsis-pressure-dome",
-    quality_indicator_scale = 0,
     surface_conditions = maraxsis.surface_conditions(),
     localised_name = {"entity-name.maraxsis-pressure-dome"},
     localised_description = {"entity-description.maraxsis-pressure-dome"},
@@ -272,8 +303,8 @@ data:extend {{
     hidden = true,
     flags = {"placeable-player", "player-creation", "placeable-off-grid", "not-on-map", "building-direction-8-way", "not-blueprintable"},
     max_health = 10000,
-    collision_box = {{-7, -0.3}, {7, 0.3}},
-    selection_box = {{-7, -0.5}, {7, 0.5}},
+    collision_box = {{-base_dome_params.corner_size, -0.3}, {base_dome_params.corner_size, 0.3}},
+    selection_box = {{-base_dome_params.corner_size, -0.5}, {base_dome_params.corner_size, 0.5}},
     drawing_box = {{0, 0}, {0, 0}},
     collision_mask = {layers = {
         ["water_tile"] = true,
@@ -307,3 +338,109 @@ data:extend {{
     shift = {0, 0},
     flags = {"no-crop", "no-scale", "icon"},
 }}
+
+
+
+local new_dome_params = {
+    -- ["maraxsis-pressure-dome-large"] = {
+    --     octagon_size = 24.5,
+    --     --corner_size = 10,
+    --     dome_collider = "maraxsis-pressure-dome-collision-large",
+    --     diagonal_offset = 7.25,
+    --     sprite = "maraxsis-pressure-dome-sprite-large",
+    --     base_sprite = "maraxsis-pressure-dome-base-sprite-large",
+    -- }
+}    
+
+for dome,params in pairs(new_dome_params) do
+    params.corner_size = math.floor(((params.octagon_size-0.5)/16)*7)
+
+    local constants = table.deepcopy(maraxsis_constants.PRESSURE_DOMES["maraxsis-pressure-dome"])
+
+    maraxsis_constants.PRESSURE_DOMES[dome] = constants
+
+    
+
+    local item = table.deepcopy(data.raw.item["maraxsis-pressure-dome"])
+    local roboport = table.deepcopy(data.raw.roboport["maraxsis-pressure-dome"])
+    local recipe = table.deepcopy(data.raw.recipe["maraxsis-pressure-dome"])
+    local collider = table.deepcopy(data.raw["simple-entity-with-owner"]["maraxsis-pressure-dome-collision"])
+
+    item.place_result = dome
+    roboport.minable.result = dome
+    collider.minable.result = dome
+    item.name = dome
+    item.icon = "__maraxsis__/graphics/icons/pressure-dome-big.png"
+    roboport.name = dome
+    recipe.name = dome
+    recipe.results[1].name = dome
+    collider.name = params.dome_collider
+    collider.selection_box = {{-params.corner_size, -0.5}, {params.corner_size, 0.5}}
+    collider.collision_box = {{-params.corner_size, -0.3}, {params.corner_size, 0.3}}
+    roboport.selection_box = {{-params.octagon_size, -params.octagon_size}, {params.octagon_size, params.octagon_size}}
+    local sprite_shift_up = 1.25
+    local cage_shadow = {
+    filename = "__maraxsis__/graphics/entity/pressure-dome-big/pressure-dome-shadow.png",
+    width = 1792,
+    height = 1792,
+    scale = 0.965*(params.octagon_size-0.5)/24,
+    shift = {0, -sprite_shift_up-8/32},
+    flags = {"no-scale"},
+    draw_as_shadow = true,
+}
+    local dome_sprite = {
+        filename = "__maraxsis__/graphics/entity/pressure-dome-big/pressure-dome-cage.png",
+        width = 1792,
+        height = 1792,
+        scale = 0.965*(params.octagon_size-0.5)/24,
+        shift = {0, -sprite_shift_up-8/32},
+        flags = {"no-scale"},
+    }
+
+    local dome_base_sprite = {
+        filename = "__maraxsis__/graphics/entity/pressure-dome-big/pressure-dome-base.png",
+        width = 1792,
+        height = 1792,
+        scale = 0.965*(params.octagon_size-0.5)/24,
+        shift = {0, -sprite_shift_up},
+        flags = {"no-scale"},
+    }
+
+    roboport.base = {
+        layers = table.array_combine({
+            cage_shadow,
+            dome_sprite,
+            dome_base_sprite,
+        }, table.deepcopy(data.raw.roboport["maraxsis-regulator"].integration_patch.layers))
+    }
+
+        data:extend {{
+        type = "sprite",
+        name = params.sprite,
+        layers = {cage_shadow, cage_shadow, dome_sprite},
+    }}
+    data:extend {{
+        type = "sprite",
+        name = params.base_sprite,
+        layers = {dome_base_sprite},
+    }
+}
+    
+    data:extend{item,roboport,recipe,collider}
+    
+    constants.octagon_size = params.octagon_size
+    constants.corner_size = params.corner_size
+    constants.pressure_dome = dome
+    constants.recipe = dome
+    constants.dome_collider = params.dome_collider
+    constants.diagonal_offset = params.diagonal_offset
+    constants.sprite = params.sprite
+    constants.base_sprite = params.base_sprite
+    maraxsis_constants.PRESSURE_DOMES[dome] = constants
+end
+
+for key,dome_data in pairs(maraxsis_constants.PRESSURE_DOMES) do
+    dome_data.octagon_diameter = (dome_data.octagon_size - 0.5) * 2
+    local dome = data.raw["roboport"][dome_data.pressure_dome]
+    dome.custom_tooltips = dome.custom_tooltips or {}
+end

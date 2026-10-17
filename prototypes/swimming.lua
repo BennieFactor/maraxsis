@@ -1,6 +1,15 @@
 local swimming_armors = {}
 local is_swimmable = {}
 
+for _,armor in pairs(data.raw.armor) do
+    if armor.provides_flight then
+        table.insert(armor.resistances,{
+            type = "drowning",
+            percent = 50,
+        })
+    end
+end
+
 for _, armor in pairs(data.raw.armor) do
     armor = table.deepcopy(armor)
     is_swimmable[armor.name] = true
@@ -9,6 +18,15 @@ for _, armor in pairs(data.raw.armor) do
     armor.provides_flight = true
     armor.hidden = true
     armor.weight = 1000000
+    if armor.flight_sound then
+        if armor.flight_sound.sound.filename == "__space-age__/sound/entity/mech-armor/mech-armor-flight.ogg" then
+            armor.flight_sound.sound.filename = "__maraxsis__/sounds/entity/mech-armor/mech-armor-flight-underwater.ogg"
+        end
+        if armor.takeoff_sound.filename == "__space-age__/sound/entity/mech-armor/mech-armor-takeoff.ogg" then
+            armor.takeoff_sound.filename = "__maraxsis__/sounds/entity/mech-armor/mech-armor-takeoff-underwater.ogg"
+        end
+        
+    end
     swimming_armors[#swimming_armors + 1] = armor
 end
 
@@ -48,7 +66,7 @@ for _, character in pairs(data.raw.character) do
                 {
                     name = "maraxsis-swimming-bubbles",
                     deviation = {0.35, 0.35},
-                    frequency = 0.6,
+                    frequency = 6,
                     position = {0, 0},
                 }
             }

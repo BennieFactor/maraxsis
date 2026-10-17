@@ -1,3 +1,5 @@
+local table = require("lib.table")
+
 function table_contains(tbl, x)
     if not tbl then
         return false
@@ -136,24 +138,10 @@ do
     fuel_category.localised_name = {"fuel-category-name.chemical"}
     data:extend {fuel_category}
 
-    data.raw.item["rocket-fuel"].fuel_category = "rocket-fuel"
-    data.raw.item["nuclear-fuel"].fuel_category = "nuclear-fuel"
+    PlanetsLib.rro.soft_insert(data.raw.item["rocket-fuel"].fuel_categories,"rocket-fuel")
+    PlanetsLib.rro.soft_insert(data.raw.item["nuclear-fuel"].fuel_categories, "nuclear-fuel")
 
-    for entity_type in pairs(defines.prototypes.entity) do
-        for _, entity in pairs(data.raw[entity_type] or {}) do
-            local burner = entity.burner or entity.energy_source
-            if not burner then goto continue end
-            if burner.type ~= "burner" then goto continue end
-
-            burner.fuel_categories = burner.fuel_categories or {"chemical"}
-            if table.find(burner.fuel_categories, "chemical") then
-                table.insert(burner.fuel_categories, "rocket-fuel")
-                table.insert(burner.fuel_categories, "nuclear-fuel")
-            end
-
-            ::continue::
-        end
-    end
+    
 end
 
 local sand_mask = collision_mask_util.get_mask(data.raw.tile["sand-1-underwater"])
@@ -165,4 +153,19 @@ if collision_mask_util.masks_collide(sand_mask, hydro_plant_mask) then
         .. " Hydro plant mask: "
         .. serpent.line(hydro_plant_mask)
     )
+end
+
+--- Prevent Nauvis nuke effects on Maraxsis (keyed by pressure, so all planets
+--- with sufficient pressure).
+if data.raw["explosion"]["nuke-effects-nauvis"] then
+    PlanetsLib.restrict_surface_conditions(data.raw["explosion"]["nuke-effects-nauvis"], {property = "pressure", max = 50000})
+end
+
+--- The trench's lava glow is made possible by these lamps. This prevents them
+--- from being able to be destroyed, including by damage types added by other
+--- mods.
+local lava_lamp = data.raw["simple-entity"]["maraxsis-lava-lamp"]
+lava_lamp.resistances = {}
+for damage_type in pairs(data.raw["damage-type"]) do
+    table.insert(lava_lamp.resistances, {type = damage_type, percent = 100})
 end

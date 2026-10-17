@@ -55,11 +55,7 @@ fishing_tower.minable = {mining_time = 0.5, result = "maraxsis-fishing-tower"}
 fishing_tower.icon = "__maraxsis__/graphics/icons/fishing-tower.png"
 fishing_tower.icon_size = 64
 fishing_tower.max_health = 500
-fishing_tower.surface_conditions = {{
-    property = "pressure",
-    min = 200000,
-    max = 200000,
-}}
+fishing_tower.surface_conditions = maraxsis.shallow_surface_conditions()
 fishing_tower.growth_grid_tile_size = 2
 fishing_tower.radius = 4
 fishing_tower.input_inventory_size = 2
@@ -98,7 +94,6 @@ data:extend {{
             [maraxsis_dome_collision_mask] = true,
             [maraxsis_underwater_collision_mask] = true,
             [maraxsis_lava_collision_mask] = true,
-            [maraxsis_trench_entrance_collision_mask] = true
         }
     },
     collision_box = {{-0.8, -0.8}, {0.8, 0.8}},
@@ -118,6 +113,13 @@ data:extend {{
         width = 1,
     },
     hidden = true,
+    --- This makes the tower show green preview squares when hovering over
+    --- coral, indicating we'll plant fish food there.
+    autoplace = {
+        tile_restriction = {"lowland-cream-red-underwater", "lowland-red-vein-2-underwater"},
+        probability_expression = "0",
+        richness_expression = "0",
+    },
     -- ambient_sounds todo
     created_effect = {
         type = "direct",

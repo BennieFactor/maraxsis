@@ -86,8 +86,9 @@ data:extend {{
 data:extend {{
     type = "recipe",
     name = "maraxsis-fish-oil",
+    localised_name = {"recipe-name.maraxsis-fish-oil"},
     enabled = false,
-    energy_required = 1,
+    energy_required = 0.25,
     ingredients = {
         {type = "item", name = "hydraulic-science-pack", amount = 1, quality_min = "normal", quality_max = "normal"},
     },
@@ -97,7 +98,7 @@ data:extend {{
     allow_productivity = false,
     allow_quality = false,
     auto_recycle = false,
-    categories = {"rocket-building"},
+    categories = {"hand-crafting"},
     always_show_made_in = true,
-    hide_from_player_crafting = true,
+    hide_from_signal_gui = true,
 }}
