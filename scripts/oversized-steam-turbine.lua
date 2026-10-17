@@ -156,3 +156,36 @@ maraxsis.on_event(maraxsis.events.on_destroyed(), function(event)
         assembler.destroy()
     end
 end)
+
+-- The oversized steam turbine owns a hidden assembling machine subentity (the
+-- one created in on_built above). Even Pickier Dollies moves the turbine, but
+-- that subentity is a separate entity and does not follow on its own, so shift
+-- it by the same offset. The fluid box linked connection between the two is
+-- persisted by entity reference, so it survives the teleport.
+if script.active_mods["even-pickier-dollies"] then
+    maraxsis.on_event("even-pickier-dollies-on-entity-moved", function(event)
+        local entity = event.moved_entity
+        if not (entity and entity.valid) or entity.name ~= "maraxsis-oversized-steam-turbine" then
+            return
+        end
+
+        local assembler = storage.oversized_steam_turbines[entity.unit_number]
+        if not (assembler and assembler.valid) then
+            return
+        end
+
+        local start_pos = event.start_pos
+        if not start_pos then
+            return
+        end
+
+        local position = entity.position
+        local dx, dy = position.x - start_pos.x, position.y - start_pos.y
+        if dx == 0 and dy == 0 then
+            return
+        end
+
+        assembler.teleport {x = assembler.position.x + dx, y = assembler.position.y + dy}
+        assembler.direction = entity.direction
+    end)
+end
