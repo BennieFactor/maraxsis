@@ -52,7 +52,7 @@ data:extend {{
     fuel_value = "999QJ",
     hidden = true,
     stack_size = 1,
-    fuel_category = "maraxsis-hidden-fuel-category",
+    fuel_categories = {"maraxsis-hidden-fuel-category"},
     localised_name = "",
 }}
 
