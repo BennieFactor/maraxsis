@@ -49,3 +49,10 @@ data:extend {{
     localised_name = {"item-name.carbon-fiber"},
     auto_recycle = false,
 }}
+
+-- Starting on Maraxsis changes what the foundry and lubricant technologies do
+-- (lava casting and fish liquefaction). Use dedicated locale keys and override
+-- their descriptions here, so the vanilla descriptions are not clobbered for
+-- other planets and for players who do not use Any Planet Start.
+data.raw["technology"]["foundry"].localised_description = {"technology-description.foundry-maraxsis-start"}
+data.raw["technology"]["lubricant"].localised_description = {"technology-description.lubricant-maraxsis-start"}
