@@ -10,7 +10,7 @@
     "base >= 2.1.22",
     "space-age >= 2.1.9",
     "quality >= 2.1.9",
-    "PlanetsLib >= 1.20.3",
+    "PlanetsLib >= 2.1.0",
     "SpidertronPatrols >= 2.7.0",
     "FluidMustFlow >= 1.5.0",
     "? any-planet-start >= 1.1.20",
