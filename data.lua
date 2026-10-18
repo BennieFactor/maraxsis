@@ -39,6 +39,7 @@ require "prototypes.technology.hydraulic-science-pack"
 require "prototypes.technology.omega-3"
 require "prototypes.technology.stone-centrifuging"
 require "prototypes.technology.deepsea-research"
+require "prototypes.fluid.supercritical-steam"
 require "prototypes.recipe.recipes"
 
 require "prototypes.circuit-connector-definitions"
@@ -51,10 +52,10 @@ require "prototypes.music"
 require "prototypes.tips-and-tricks"
 
 require "compat.krastorio-2"
- 
-data.raw["mining-drill"]["burner-mining-drill"].maraxsis_buildability_rules = {water = false, dome = false, coral = false, trench = false, trench_entrance = false, trench_lava = false}
-data.raw["assembling-machine"]["chemical-plant"].maraxsis_buildability_rules = {water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false}
-data.raw["electric-energy-interface"]["electric-energy-interface"].maraxsis_buildability_rules = {water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false}
+
+data.raw["mining-drill"]["burner-mining-drill"].maraxsis_buildability_rules = { water = false, dome = false, coral = false, trench = false, trench_entrance = false, trench_lava = false }
+data.raw["assembling-machine"]["chemical-plant"].maraxsis_buildability_rules = { water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false }
+data.raw["electric-energy-interface"]["electric-energy-interface"].maraxsis_buildability_rules = { water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false }
 
 -- Any Planet Start integration. Register Maraxsis as a custom starting planet so
 -- any-planet-start runs the maraxsis-start content only when it is selected.
