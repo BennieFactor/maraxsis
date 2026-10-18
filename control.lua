@@ -23,7 +23,7 @@ require "scripts.fishing-tower"
 require "scripts.drowning"
 require "scripts.sonar"
 require "scripts.sand-extractor"
-require "scripts.oversized-steam-turbine"
+require "scripts.supercritical-steam"
 require "scripts.hydraulic-science-pack"
 require "scripts.legendary-quality"
 
