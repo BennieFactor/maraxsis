@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.4
+Date: 2026-10-18
+  Balancing:
+    - Increased the max health of Conduit to 300. Increased the heating energy to 1 MW.
+  Bugfixes:
+    - Adjusted scaling of conduit effectiveness to simplify estimations of overall effectiveness.. https://github.com/FluidNatalie/maraxsis/issues/34
+---------------------------------------------------------------------------------------------------
 Version: 1.40.3
 Date: 2026-10-18
   Bugfixes:
