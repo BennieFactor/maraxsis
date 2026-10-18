@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.3
+Date: 2026-10-18
+  Bugfixes:
+    - Stop Maraxsis Start from overwriting vanilla foundry/lubricant descriptions
+  Changes:
+    - Switched oversized steam turbines to be "generator" prototype instead of "fusion-generator".
+---------------------------------------------------------------------------------------------------
 Version: 1.40.2
 Date: 2026-10-18
   Bugfixes:
