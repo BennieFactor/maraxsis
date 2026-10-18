@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.6
+Date: 2026-10-18
+  Balancing:
+    - Removed "coal liquefaction" from project seadragon tech requirements.
+    - The "bio oil" recipe now returns heavy oil instead of light oil. It can also now be additionally performed inside a chemical reactor. Removed petroleum gas cracking to heavy oil.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.5
 Date: 2026-10-18
   Balancing:
