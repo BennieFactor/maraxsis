@@ -43,7 +43,7 @@ utils.set_prerequisites("automation-science-pack", {"concrete", "lubricant"})
 utils.set_prerequisites("explosives", {"maraxsis-wyrm-confinement", "coal-liquefaction"})
 utils.set_prerequisites("military-2", {"coal-liquefaction", "military", "logistic-science-pack"})
 utils.set_prerequisites("cliff-explosives", {"military-2", "explosives", "fluid-handling"})
-utils.set_prerequisites("low-density-structure", {"plastics", "advanced-material-processing"})
+utils.set_prerequisites("low-density-structure", {"plastics", "electric-engine"})
 
 if not mods["planet-muluna"] then
     utils.set_prerequisites("automobilism", {"space-science-pack"})
