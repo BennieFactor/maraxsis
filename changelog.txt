@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.13
+Date: 2026-10-19
+  Balancing:
+    - With any planet start, reordered the tech tree to prevent extreme tedious manual sulfur harvesting.
+    - With any planet start, wyrm confinement is now unlocked with chemical science rather than logistic science.
+  Changes:
+    - Added 1 geothermal generator to the any planet start starting items.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.12
 Date: 2026-10-19
   Balancing:
