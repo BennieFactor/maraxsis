@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.11
+Date: 2026-10-19
+  Balancing:
+    - A breath of fresh air can now only be constructed on maraxsis.
+    - When using any planet start, added an alternative (manual) source of calcite to aid in researching inital crushers.
+    - When using any planet start, the breath of fresh air now generates infinite atmosphere per second, rather than 60/sec.
+  Changes:
+    - The breath of fresh air can no longer be recycled.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.10
 Date: 2026-10-19
   Compatibility:
