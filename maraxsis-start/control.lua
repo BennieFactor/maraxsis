@@ -48,6 +48,7 @@ maraxsis.on_event(maraxsis.events.on_init(), function()
         ["maraxsis-a-breath-of-fresh-air"] = 1,
         ["foundry"] = 5,
         ["crusher"] = 1,
+        ["maraxsis-geothermal-generator"] = 1,
         ["medium-electric-pole"] = 20,
     })
     remote.call("freeplay", "set_debris_items", {

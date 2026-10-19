@@ -7,19 +7,17 @@ utils.set_prerequisites("foundry", {"maraxsis-glassworking"})
 utils.set_prerequisites("big-mining-drill", {"foundry", "planet-discovery-vulcanus", "electric-mining-drill"})
 utils.set_prerequisites("electronics", {"foundry"})
 utils.set_prerequisites("maraxsis-hydro-plant", {"tungsten-steel"})
-utils.set_prerequisites("uranium-processing", {"hydraulic-science-pack"})
 utils.set_prerequisites("solar-energy", {"electronics"})
 utils.set_prerequisites("automation-science-pack", {"solar-energy"})
-utils.set_prerequisites("maraxsis-wyrm-confinement", {"steam-power", "maraxsis-piscary"})
+utils.set_prerequisites("maraxsis-wyrm-confinement", {"steam-power", "maraxsis-piscary", "chemical-science-pack"})
 utils.set_prerequisites("steam-power", {"concrete"})
 utils.set_prerequisites("ducts", {"cliff-explosives"})
 utils.set_prerequisites("plastics", {"lubricant", "logistic-science-pack"})
-utils.set_prerequisites("processing-unit", {"sulfur-processing", "advanced-circuit"})
+utils.set_prerequisites("processing-unit", {"sulfur-processing", "advanced-circuit", "ducts"})
 utils.set_prerequisites("tungsten-steel", {"electronics"})
 utils.set_prerequisites("metallurgic-science-pack", {"big-mining-drill", "calcite-processing", "tungsten-carbide"})
 utils.set_prerequisites("maraxsis-piscary", {"landfill", "plastics", "electric-mining-drill"})
-utils.set_prerequisites("sulfur-processing", {"ducts"})
-utils.set_prerequisites("coal-liquefaction", {"maraxsis-piscary"})
+utils.set_prerequisites("sulfur-processing", {"steam-power"})
 utils.set_prerequisites("oil-gathering", {"space-science-pack"})
 utils.set_prerequisites("planet-discovery-nauvis", {"rocket-fuel", "space-platform-thruster"})
 utils.set_prerequisites("planet-discovery-vulcanus", {"rocket-fuel", "space-platform-thruster"})
@@ -27,8 +25,7 @@ utils.set_prerequisites("planet-discovery-fulgora", {"rocket-fuel", "space-platf
 utils.set_prerequisites("oil-processing", {"planet-discovery-nauvis", "oil-gathering"})
 utils.set_prerequisites("advanced-oil-processing", {"oil-processing", "production-science-pack"})
 utils.set_prerequisites("rocket-silo", {"processing-unit", "logistic-robotics", "advanced-material-processing-2", "maraxsis-project-seadragon", "low-density-structure"})
-utils.set_prerequisites("lubricant", {"coal-liquefaction"})
-utils.set_prerequisites("hydraulic-science-pack", {"maraxsis-wyrm-confinement", "chemical-science-pack"})
+utils.set_prerequisites("hydraulic-science-pack", {"maraxsis-wyrm-confinement", "chemical-science-pack", "maraxsis-geothermal-energy"})
 utils.set_prerequisites("fission-reactor-equipment", {"power-armor", "utility-science-pack", "military-science-pack"})
 utils.set_prerequisites("rocket-fuel", {"oil-gathering"})
 utils.set_prerequisites("railway", {"elevated-rail", "engine", "logistics-2"})
@@ -40,10 +37,15 @@ utils.set_prerequisites("concrete", {"lubricant"})
 utils.set_prerequisites("lubricant", {"maraxsis-hydro-plant"})
 utils.set_prerequisites("electric-engine", {"engine", "lubricant"})
 utils.set_prerequisites("automation-science-pack", {"concrete", "lubricant"})
-utils.set_prerequisites("explosives", {"maraxsis-wyrm-confinement", "coal-liquefaction"})
-utils.set_prerequisites("military-2", {"coal-liquefaction", "military", "logistic-science-pack"})
+utils.set_prerequisites("explosives", {"sulfur-processing", "maraxsis-piscary"})
+utils.set_prerequisites("military-2", {"military", "logistic-science-pack"})
 utils.set_prerequisites("cliff-explosives", {"military-2", "explosives", "fluid-handling"})
 utils.set_prerequisites("low-density-structure", {"plastics", "electric-engine", "advanced-material-processing"})
+utils.set_prerequisites("maraxsis-geothermal-energy", {"processing-unit", "chemical-science-pack"})
+utils.set_prerequisites("exoskeleton-equipment", {"power-armor"})
+utils.set_prerequisites("power-armor", {"chemical-science-pack", "electric-engine", "modular-armor", "processing-unit"})
+utils.set_prerequisites("robotics", {"chemical-science-pack", "electric-engine", "battery"})
+utils.set_prerequisites("chemical-science-pack", {"advanced-circuit", "sulfur-processing", "engine"})
 
 if not mods["planet-muluna"] then
     utils.set_prerequisites("automobilism", {"space-science-pack"})
@@ -52,8 +54,6 @@ else
     utils.set_prerequisites("wood-gas-processing", {"muluna-greenhouses"})
 end
 
-
-utils.add_recipes("uranium-processing", {"uranium-fuel-cell"})
 utils.add_recipes("planet-discovery-nauvis", {"burner-mining-drill"})
 utils.add_recipes("tree-seeding", {"small-electric-pole", "wooden-chest"})
 utils.add_recipes("advanced-material-processing", {"burner-mining-drill"})
@@ -62,9 +62,8 @@ utils.add_recipes("electronics", {"chemical-plant", "medium-electric-pole", "iro
 utils.add_recipes("tungsten-steel", {"maraxsis-tungsten-ore-dissolution"})
 utils.add_recipes("biochamber", {"maraxsis-nutrients-from-tropical-fish"})
 utils.add_recipes("low-density-structure", {"casting-low-density-structure"})
-utils.add_recipes("coal-liquefaction", {"coal-synthesis", "simple-coal-liquefaction", "heavy-oil-cracking", "light-oil-cracking"})
 utils.insert_recipe("coal-liquefaction", "oil-refinery", 1)
---utils.add_recipes("foundry", {"maraxsis-limestone-processing"})
+utils.add_recipes("foundry", {"maraxsis-limestone-crushing"})
 utils.add_recipes("space-platform-thruster", {"maraxsis-atmosphere"})
 utils.add_recipes("production-science-pack", {"rail"})
 utils.add_recipes("oil-gathering", {"lubricant"})
@@ -72,17 +71,18 @@ utils.add_recipes("lubricant", {"biolubricant", "maraxsis-microplastics", "marax
 utils.insert_recipe("lubricant", "foundry", 1)
 utils.add_recipes("automation-science-pack", {"lab"})
 utils.add_recipes("low-density-structure", {"crusher"})
+utils.add_recipes("explosives", {"coal-synthesis"})
+utils.add_recipes("advanced-oil-processing", {"sulfur"})
+utils.add_recipes("sulfur-processing", {"maraxsis-geothermal-sulfur", "maraxsis-supercritical-steam"})
+utils.add_recipes("cryogenic-plant", {"maraxsis-supercritical-steam-cooling"})
 
 utils.remove_recipes("steam-power", {"offshore-pump"})
-utils.remove_recipes("nuclear-power", {"uranium-fuel-cell"})
 utils.remove_recipes("maraxsis-piscary", {"maraxsis-microplastics", "maraxsis-smelt-microplastics", "maraxsis-nutrients-from-tropical-fish"})
 utils.remove_recipes("oil-processing", {"chemical-plant"})
 utils.remove_recipes("electronics", {"small-electric-pole"})
 utils.remove_recipes("rocket-turret", {"coal-synthesis"})
-utils.remove_recipes("calcite-processing", {"simple-coal-liquefaction"})
 utils.remove_recipes("electric-energy-distribution-1", {"medium-electric-pole"})
-utils.remove_recipes("advanced-oil-processing", {"heavy-oil-cracking", "light-oil-cracking"})
-utils.remove_recipes("maraxsis-glassworking", {"maraxsis-sand-extraction", "maraxsis-limestone-processing", "maraxsis-atmosphere"})
+utils.remove_recipes("maraxsis-glassworking", {"maraxsis-sand-extraction", "maraxsis-limestone-crushing", "maraxsis-atmosphere"})
 utils.remove_recipes("railway", {"rail"})
 utils.remove_recipes("foundry", {"casting-low-density-structure", "foundry"})
 utils.remove_recipes("planet-discovery-maraxsis", {"maraxsis-diesel-submarine"})
@@ -95,6 +95,8 @@ utils.remove_recipes("concrete", {"iron-stick"})
 utils.remove_recipes("circuit-network", {"iron-stick"})
 utils.remove_recipes("military-2", {"piercing-rounds-magazine"})
 utils.remove_recipes("space-platform", {"crusher"})
+utils.remove_recipes("sulfur-processing", {"sulfur"})
+utils.remove_recipes("maraxsis-geothermal-energy", {"maraxsis-geothermal-sulfur", "maraxsis-supercritical-steam", "maraxsis-supercritical-steam-cooling"})
 
 utils.set_trigger("foundry", {type = "craft-fluid", fluid = "lava"})
 utils.set_trigger("solar-energy", {type = "craft-item", item = "electronic-circuit"})
@@ -105,7 +107,8 @@ utils.set_trigger("maraxsis-hydro-plant", {type = "craft-item", item = "tungsten
 utils.set_trigger("concrete", {type = "craft-fluid", fluid = "water"})
 utils.set_trigger("lubricant", {type = "build-entity", entity = "maraxsis-hydro-plant"})
 utils.set_trigger("automation-science-pack", {type = "craft-item", item = "foundry"})
-utils.set_trigger("sulfur-processing", data.raw.technology["maraxsis-wyrm-confinement"].research_trigger)
+utils.set_trigger("sulfur-processing", {type = "build-entity", entity = "maraxsis-geothermal-generator"})
+utils.set_trigger("processing-unit", {type = "build-entity", entity = "maraxsis-trench-duct"})
 utils.set_trigger("ducts", {type = "craft-item", item = "cliff-explosives"})
 
 data.raw.tree["maraxsis-polylplast"].minable.results = {
@@ -157,10 +160,6 @@ table.insert(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results,
     quality_max = "epic"
 })
 
--- increase the yield of the stone centrifuging recipe by 10x.
-data.raw.recipe["maraxsis-stone-centrifuging"].results[1].independent_probability = 0.1
-data.raw.technology["maraxsis-stone-centrifuging"].hidden = true
-
 data.raw.recipe["small-electric-pole"].enabled = false
 data.raw.recipe["wooden-chest"].enabled = false
 data.raw.recipe["burner-mining-drill"].enabled = false
@@ -185,10 +184,8 @@ local production_science = {"automation-science-pack", "logistic-science-pack", 
 local production_space_science = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "space-science-pack", "production-science-pack"}
 local military_space_science = {"automation-science-pack", "logistic-science-pack", "military-science-pack", "chemical-science-pack", "space-science-pack"}
 
-utils.set_packs("uranium-processing", hydraulic_science, 100, 30)
 utils.set_packs("hydraulic-science-pack", chemical_science, 100, 30)
 utils.set_packs("maraxsis-piscary", logistic_science, 100, 30)
-utils.set_packs("coal-liquefaction", logistic_science, 100, 30)
 utils.set_packs("oil-gathering", space_science, 100, 30)
 utils.set_packs("advanced-oil-processing", production_space_science, 1000, 60)
 utils.set_packs("flammables", space_science, 200, 60)
@@ -202,14 +199,15 @@ utils.set_packs("rocket-fuel", space_science_or_before_muluna, 300, 45)
 utils.set_packs("railway", production_science, 100, 30)
 utils.set_packs("automated-rail-transportation", production_science, 100, 30)
 utils.set_packs("fluid-wagon", production_science, 100, 30)
-utils.set_packs("processing-unit", logistic_science, 100, 30)
 utils.set_packs("radar", hydraulic_science, 100, 60)
 utils.set_packs("maraxsis-sonar", hydraulic_science, 100, 60)
 utils.set_packs("electric-engine", logistic_science, 100, 30)
 if not k2 then utils.set_packs("maraxsis-deepsea-research", hydraulic_science, 500, 60) end
 utils.set_packs("cliff-explosives", logistic_science, 100, 30)
-utils.set_packs("maraxsis-wyrm-confinement", logistic_science, 100, 30)
+utils.set_packs("maraxsis-wyrm-confinement", chemical_science, 100, 30)
 utils.set_packs("low-density-structure", logistic_science, 100, 30)
+utils.set_packs("maraxsis-geothermal-energy", chemical_science, 250, 30)
+utils.set_packs("rocket-silo", hydraulic_science, 1000, 60)
 
 PlanetsLib.rro.soft_insert(data.raw["technology"]["planet-discovery-aquilo"].unit.ingredients, {"hydraulic-science-pack", 1})
 PlanetsLib.rro.soft_insert(data.raw["technology"]["captive-biter-spawner"].unit.ingredients, {"hydraulic-science-pack", 1})
