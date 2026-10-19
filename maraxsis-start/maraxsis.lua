@@ -123,11 +123,39 @@ data.raw.tree["maraxsis-polylplast"].minable.results = {
     }
 }
 
-for _, result in pairs(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results) do
+for i, result in pairs(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results) do
     if result.name == "limestone" then
-        result.name = "calcite"
+        table.remove(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results, i)
+        break
     end
 end
+
+table.insert(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results, {
+    type = "item",
+    name = "calcite",
+    amount_min = 10,
+    amount_max = 15,
+    quality_min = "uncommon",
+    quality_max = "uncommon"
+})
+
+table.insert(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results, {
+    type = "item",
+    name = "calcite",
+    amount_min = 10,
+    amount_max = 15,
+    quality_min = "rare",
+    quality_max = "rare"
+})
+
+table.insert(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results, {
+    type = "item",
+    name = "calcite",
+    amount_min = 10,
+    amount_max = 15,
+    quality_min = "epic",
+    quality_max = "epic"
+})
 
 -- increase the yield of the stone centrifuging recipe by 10x.
 data.raw.recipe["maraxsis-stone-centrifuging"].results[1].independent_probability = 0.1
