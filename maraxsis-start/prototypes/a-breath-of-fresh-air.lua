@@ -87,6 +87,7 @@ data:extend {{
     icon = "__maraxsis__/maraxsis-start/graphics/icons/a-breath-of-fresh-air.png",
     icon_size = 64,
     maraxsis_buildability_rules = {water = true, dome = true, coral = true, trench = true, trench_entrance = false, trench_lava = false},
+    surface_conditions = maraxsis.surface_conditions(),
     flags = {"placeable-neutral", "player-creation"},
     minable = {mining_time = 0.4, result = "maraxsis-a-breath-of-fresh-air"},
     heating_energy = "50kW",
