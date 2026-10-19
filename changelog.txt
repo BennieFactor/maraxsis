@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.12
+Date: 2026-10-19
+  Balancing:
+    - Convert maraxsis start carbon fiber recipe to hand crafting only.
+    - Restrict all recipes added by maraxsis start to be crafted on maraxsis.
+  Bugfixes:
+    - The maraxsis start tungsten ore dissolution recipe is now marked as auto_recycle false.
+  Changes:
+    - Reverted any planet start's changes to the stone centrifuging technology.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.11
 Date: 2026-10-19
   Balancing:
