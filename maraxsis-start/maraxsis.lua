@@ -26,7 +26,7 @@ utils.set_prerequisites("planet-discovery-vulcanus", {"rocket-fuel", "space-plat
 utils.set_prerequisites("planet-discovery-fulgora", {"rocket-fuel", "space-platform-thruster", "electric-energy-accumulators"})
 utils.set_prerequisites("oil-processing", {"planet-discovery-nauvis", "oil-gathering"})
 utils.set_prerequisites("advanced-oil-processing", {"oil-processing", "production-science-pack"})
-utils.set_prerequisites("rocket-silo", {"processing-unit", "logistic-robotics", "advanced-material-processing-2", "maraxsis-project-seadragon"})
+utils.set_prerequisites("rocket-silo", {"processing-unit", "logistic-robotics", "advanced-material-processing-2", "maraxsis-project-seadragon", "low-density-structure"})
 utils.set_prerequisites("lubricant", {"coal-liquefaction"})
 utils.set_prerequisites("hydraulic-science-pack", {"maraxsis-wyrm-confinement", "chemical-science-pack"})
 utils.set_prerequisites("fission-reactor-equipment", {"power-armor", "utility-science-pack", "military-science-pack"})
@@ -43,6 +43,7 @@ utils.set_prerequisites("automation-science-pack", {"concrete", "lubricant"})
 utils.set_prerequisites("explosives", {"maraxsis-wyrm-confinement", "coal-liquefaction"})
 utils.set_prerequisites("military-2", {"coal-liquefaction", "military", "logistic-science-pack"})
 utils.set_prerequisites("cliff-explosives", {"military-2", "explosives", "fluid-handling"})
+utils.set_prerequisites("low-density-structure", {"plastics", "advanced-material-processing"})
 
 if not mods["planet-muluna"] then
     utils.set_prerequisites("automobilism", {"space-science-pack"})
@@ -174,6 +175,7 @@ utils.set_packs("electric-engine", logistic_science, 100, 30)
 if not k2 then utils.set_packs("maraxsis-deepsea-research", hydraulic_science, 500, 60) end
 utils.set_packs("cliff-explosives", logistic_science, 100, 30)
 utils.set_packs("maraxsis-wyrm-confinement", logistic_science, 100, 30)
+utils.set_packs("low-density-structure", logistic_science, 100, 30)
 
 PlanetsLib.rro.soft_insert(data.raw["technology"]["planet-discovery-aquilo"].unit.ingredients, {"hydraulic-science-pack", 1})
 PlanetsLib.rro.soft_insert(data.raw["technology"]["captive-biter-spawner"].unit.ingredients, {"hydraulic-science-pack", 1})
