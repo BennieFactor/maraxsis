@@ -60,24 +60,29 @@ maraxsis.on_event(defines.events.on_script_trigger_effect, function(event)
     if event.effect_id ~= "on_built_a_breath_of_fresh_air" then return end
     local entity = event.source_entity
     entity.destructible = false
-    storage.fresh_air_energy_interfaces = storage.fresh_air_energy_interfaces or {}
-    local energy_interface = entity.surface.create_entity {
-        name = "maraxsis-a-breath-of-fresh-air-power",
+    storage.fresh_air_infinity_pipes = storage.fresh_air_infinity_pipes or {}
+    local infinity_pipe = entity.surface.create_entity {
+        name = "maraxsis-a-breath-of-fresh-air-infinity-pipe",
         position = entity.position,
         force = entity.force,
         create_build_effect_smoke = false,
     }
-    energy_interface.destructible = false
-    energy_interface.operable = false
-    --energy_interface.minable = false
+    infinity_pipe.destructible = false
+    infinity_pipe.operable = false
+    infinity_pipe.set_infinity_pipe_filter{
+        name = "maraxsis-atmosphere",
+        percentage = 1,
+        temperature = 25,
+        mode = "add"
+    }
     local registration_number = script.register_on_object_destroyed(entity)
-    storage.fresh_air_energy_interfaces[registration_number] = energy_interface
+    storage.fresh_air_infinity_pipes[registration_number] = infinity_pipe
 end)
 
 maraxsis.on_event(defines.events.on_object_destroyed, function(event)
-    if not storage.fresh_air_energy_interfaces then return end
-    local energy_interface = storage.fresh_air_energy_interfaces[event.registration_number]
-    if not energy_interface then return end
-    energy_interface.destroy()
-    storage.fresh_air_energy_interfaces[event.registration_number] = nil
+    if not storage.fresh_air_infinity_pipes then return end
+    local infinity_pipe = storage.fresh_air_infinity_pipes[event.registration_number]
+    if not infinity_pipe then return end
+    infinity_pipe.destroy()
+    storage.fresh_air_infinity_pipes[event.registration_number] = nil
 end)
