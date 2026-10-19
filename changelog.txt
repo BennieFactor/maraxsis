@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.9
+Date: 2026-10-19
+  Balancing:
+    - With any planet start, adjusted the low density structure technology to be green science rather than blue science.
+    - With any planet start, crusher is now unlocked earlier in progression with the low density structure technology rather than the space platform technology.
+  Bugfixes:
+    - Fixed softlock in any planet start by giving you 1 crusher.
+    - Fixed that the "legendary quality on maraxsis" tech did not consume any hydraulic science.
+    - WIth any planet start, the legendary quality tech now properly requires either cryogenic science packs or hydraulic science packs.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.8
 Date: 2026-10-19
   Balancing:
