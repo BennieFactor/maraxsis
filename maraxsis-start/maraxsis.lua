@@ -123,6 +123,12 @@ data.raw.tree["maraxsis-polylplast"].minable.results = {
     }
 }
 
+for _, result in pairs(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results) do
+    if result.name == "limestone" then
+        result.name = "calcite"
+    end
+end
+
 -- increase the yield of the stone centrifuging recipe by 10x.
 data.raw.recipe["maraxsis-stone-centrifuging"].results[1].independent_probability = 0.1
 data.raw.technology["maraxsis-stone-centrifuging"].hidden = true
