@@ -10,6 +10,7 @@ data:extend {{
     flags = {"not-stackable"},
     weight = 1000000,
     default_import_location = "maraxsis",
+    auto_recycle = false
 }}
 
 data:extend {{
