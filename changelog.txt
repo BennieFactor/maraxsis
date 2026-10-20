@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.21
+Date: 2026-10-20
+  Balancing:
+    - Geothermal sulfur now consumes brackish water instead of lava. Crafting time buffed from 3sec -> 2sec.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.20
 Date: 2026-10-20
   Bugfixes:
