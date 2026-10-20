@@ -129,38 +129,14 @@ data.raw.tree["maraxsis-polylplast"].minable.results = {
 
 for i, result in pairs(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results) do
     if result.name == "limestone" then
-        table.remove(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results, i)
-        break
+        result.name = "calcite"
     end
 end
 
-table.insert(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results, {
-    type = "item",
-    name = "calcite",
-    amount_min = 10,
-    amount_max = 15,
-    quality_min = "uncommon",
-    quality_max = "uncommon"
-})
-
-table.insert(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results, {
-    type = "item",
-    name = "calcite",
-    amount_min = 10,
-    amount_max = 15,
-    quality_min = "rare",
-    quality_max = "rare"
-})
-
-table.insert(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minable.results, {
-    type = "item",
-    name = "calcite",
-    amount_min = 10,
-    amount_max = 15,
-    quality_min = "epic",
-    quality_max = "epic"
-})
-
+data.raw.recipe["small-electric-pole"].enabled = false
+data.raw.recipe["wooden-chest"].enabled = false
+data.raw.recipe["burner-mining-drill"].enabled = false
+data.raw.recipe["maraxsis-diesel-submarine"].enabled = false
 data.raw.recipe["pipe"].enabled = true
 data.raw.recipe["pipe-to-ground"].enabled = true
 data.raw.recipe["offshore-pump"].enabled = true
