@@ -38,7 +38,7 @@ maraxsis.on_event(defines.events.on_player_created, function(event)
     pcall(player.exit_cutscene)
     player.insert {name = "light-armor", count = 1}
     player.insert {name = "maraxsis-diesel-submarine", count = 1}
-    player.insert {name = "hydrogen-barrel", count = 80}
+    player.insert {name = "rocket-fuel", count = 80}
 end)
 
 maraxsis.on_event(maraxsis.events.on_init(), function()
