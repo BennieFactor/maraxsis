@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.23
+Date: 2026-10-20
+  Changes:
+    - Enabled mirroring on the regulator and oversized steam turbine so they can be flipped
+---------------------------------------------------------------------------------------------------
 Version: 1.40.22
 Date: 2026-10-20
   Compatibility:
