@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.18
+Date: 2026-10-20
+  Bugfixes:
+    - FIxed a softlock in any planet start. Removed quality 3 modules from the hydro plant crafting recipe.
+    - With any planet start, fixed softlock due to inability to craft iron gears.
+    - With any planet start, fixed softlock due to inability to craft steel.
+    - With any planet start, several endgame technologies had duplicate hydro science packs in the cost definition.
+    - WIth any planet start, several endgame technologies had duplicate hydro science packs in the cost definition.
+  Changes:
+    - With any planet start, the steam power technology now requires the hydro plant technology instead of the concrete technology.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.17
 Date: 2026-10-20
   Balancing:
