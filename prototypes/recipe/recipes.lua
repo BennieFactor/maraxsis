@@ -2,8 +2,8 @@ data:extend {{
     type = "recipe",
     name = "maraxsis-geothermal-sulfur",
     ingredients = {
-        {type = "fluid", name = "maraxsis-supercritical-steam", amount = 100},
-        {type = "fluid", name = "lava",  amount = 100},
+        {type = "fluid", name = "maraxsis-supercritical-steam", amount = 30},
+        {type = "fluid", name = "maraxsis-brackish-water",  amount = 30},
     },
     results = {
         {type = "item", name = "sulfur", amount = 2},
