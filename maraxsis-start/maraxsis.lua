@@ -10,7 +10,7 @@ utils.set_prerequisites("maraxsis-hydro-plant", {"tungsten-steel"})
 utils.set_prerequisites("solar-energy", {"electronics"})
 utils.set_prerequisites("automation-science-pack", {"solar-energy"})
 utils.set_prerequisites("maraxsis-wyrm-confinement", {"steam-power", "maraxsis-piscary", "chemical-science-pack"})
-utils.set_prerequisites("steam-power", {"concrete"})
+utils.set_prerequisites("steam-power", {"maraxsis-hydro-plant"})
 utils.set_prerequisites("ducts", {"cliff-explosives"})
 utils.set_prerequisites("plastics", {"lubricant", "logistic-science-pack"})
 utils.set_prerequisites("processing-unit", {"sulfur-processing", "advanced-circuit", "ducts"})
@@ -209,10 +209,10 @@ PlanetsLib.rro.soft_insert(data.raw.technology["maraxsis-hydro-plant"].effects, 
     quality = "rare",
 })
 
--- remove processing units from hydro plant
+-- remove processing units and quality module 3 from hydro plant
 local new_ingredients = {}
 for _, ingredient in pairs(data.raw.recipe["maraxsis-hydro-plant"].ingredients) do
-    if ingredient.name ~= "processing-unit" then
+    if ingredient.name ~= "processing-unit" and ingredient.name ~= "quality-module-3" then
         PlanetsLib.rro.soft_insert(new_ingredients, ingredient)
     end
 end
