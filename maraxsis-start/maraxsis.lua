@@ -158,12 +158,11 @@ data.raw.recipe["transport-belt"].enabled = false
 local logistic_science = {"automation-science-pack", "logistic-science-pack"}
 local chemical_science = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack"}
 local hydraulic_science = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "hydraulic-science-pack"}
-local hydraulic_space_science = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "hydraulic-science-pack", "space-science-pack"}
-local space_science = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "space-science-pack"}
-local space_science_or_before_muluna = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "space-science-pack"}
+local space_science = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "hydraulic-science-pack", "space-science-pack"}
+local space_science_or_before_muluna = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "hydraulic-science-pack", "space-science-pack"}
 
 if mods["planet-muluna"] then
-    space_science_or_before_muluna = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack","hydraulic-science-pack"} --Technologies intended to exist when starting a Muluna base.
+    space_science_or_before_muluna = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "hydraulic-science-pack"} --Technologies intended to exist when starting a Muluna base.
 end
 
 local production_science = {"automation-science-pack", "logistic-science-pack", "chemical-science-pack", "space-science-pack", "production-science-pack"}
@@ -194,6 +193,7 @@ utils.set_packs("maraxsis-wyrm-confinement", chemical_science, 100, 30)
 utils.set_packs("low-density-structure", logistic_science, 100, 30)
 utils.set_packs("maraxsis-geothermal-energy", chemical_science, 250, 30)
 utils.set_packs("rocket-silo", hydraulic_science, 1000, 60)
+utils.set_packs("uranium-mining", space_science, 300, 60)
 
 PlanetsLib.rro.soft_insert(data.raw["technology"]["planet-discovery-aquilo"].unit.ingredients, {"hydraulic-science-pack", 1})
 PlanetsLib.rro.soft_insert(data.raw["technology"]["captive-biter-spawner"].unit.ingredients, {"hydraulic-science-pack", 1})
@@ -260,3 +260,32 @@ table.insert(data.raw.technology["maraxsis-glassworking"].effects, 1, {
     space_location = "maraxsis-trench",
     use_icon_overlay_constant = true
 })
+
+-- if a tech has space science but does not have hydraulic science, add hydraulic science
+for _, technology in pairs(data.raw.technology) do
+    if technology.hidden then goto continue end
+    if technology.name == "legendary-quality" then goto continue end
+    if type(technology.unit) ~= "table" then goto continue end
+    if type(technology.unit.ingredients) ~= "table" then goto continue end
+
+    local has_hyd = false
+    local has_space = false
+    local count_to_insert = 1
+
+    for _, ingredient in pairs(technology.unit.ingredients) do
+        if type(ingredient) == "table" then
+            if ingredient[1] == "space-science-pack" then
+                has_space = true
+                count_to_insert = ingredient[2]
+            elseif ingredient[1] == "hydraulic-science-pack" then
+                has_hyd = true 
+            end
+        end
+    end
+
+    if has_hyd == false and has_space == true and table_size(technology.unit.ingredients) >= 3 then
+        table.insert(technology.unit.ingredients, {"hydraulic-science-pack", count_to_insert})
+    end
+
+    ::continue::
+end
