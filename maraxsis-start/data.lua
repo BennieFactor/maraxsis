@@ -34,13 +34,13 @@ data:extend {{
     name = "maraxsis-carbon-fiber-from-jelly",
     categories = {"hand-crafting"},
     enabled = false,
-    energy_required = 0.5,
+    energy_required = 5,
     ingredients = {
         {type = "item", name = "tungsten-carbide", amount = 1},
         {type = "item", name = "jelly",            amount = 10},
     },
     results = {
-        {type = "item", name = "carbon-fiber", amount = 1},
+        {type = "item", name = "carbon-fiber", amount = 10},
     },
     main_product = "carbon-fiber",
     allow_recycling = false,
