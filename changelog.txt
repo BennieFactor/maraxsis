@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.19
+Date: 2026-10-20
+  Bugfixes:
+    - Added additional check to see if mining drills were deleted by another mod between being declared a sand extractor and when checked by Maraxsis in data-final-fixes.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.18
 Date: 2026-10-20
   Bugfixes:
