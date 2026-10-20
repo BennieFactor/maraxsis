@@ -17,7 +17,6 @@ data.raw.planet.maraxsis.asteroid_spawn_definitions, data.raw.planet.nauvis.aste
 data.raw["space-connection"]["vulcanus-maraxsis"].asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus)
 data.raw["space-connection"]["fulgora-maraxsis"].asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_fulgora)
 
-
 local sacrifice = table.deepcopy(data.raw.recipe["electromagnetic-plant"])
 table.insert(sacrifice.ingredients, {
     type = "item",

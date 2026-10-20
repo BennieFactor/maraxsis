@@ -52,9 +52,23 @@ data:extend {{
     surface_conditions = maraxsis.surface_conditions(),
 }}
 
--- Starting on Maraxsis changes what the foundry and lubricant technologies do
--- (lava casting and fish liquefaction). Use dedicated locale keys and override
--- their descriptions here, so the vanilla descriptions are not clobbered for
+data:extend {{
+    type = "technology",
+    name = "maraxsis-casting",
+    icon = data.raw.technology["foundry"].icon,
+    icon_size = data.raw.technology["foundry"].icon_size,
+    effects = {},
+    prerequisites = {},
+    unit = {
+        count = 0,
+        ingredients = {},
+        time = 0,
+    },
+    order = "ea[maraxsis]",
+}}
+
+-- Starting on Maraxsis changes what the lubricant technology does.
+-- Use dedicated locale keys and override their descriptions here,
+-- so the vanilla descriptions are not clobbered for
 -- other planets and for players who do not use Any Planet Start.
-data.raw["technology"]["foundry"].localised_description = {"technology-description.foundry-maraxsis-start"}
 data.raw["technology"]["lubricant"].localised_description = {"technology-description.lubricant-maraxsis-start"}
