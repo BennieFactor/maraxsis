@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.16
+Date: 2026-10-20
+  Balancing:
+    - With any planet start, moved advanced casting recipes back to vulcanus. Maraxsis now only unlocks the bare minium foundry casting recipes.
+---------------------------------------------------------------------------------------------------
 Version: 1.40.15
 Date: 2026-10-20
   Balancing:
