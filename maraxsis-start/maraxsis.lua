@@ -60,7 +60,7 @@ utils.add_recipes("plastics", {"maraxsis-smelt-microplastics"})
 utils.add_recipes("electronics", {"chemical-plant"})
 utils.add_recipes("tungsten-steel", {"maraxsis-tungsten-ore-dissolution"})
 utils.add_recipes("biochamber", {"maraxsis-nutrients-from-tropical-fish"})
-utils.add_recipes("maraxsis-casting", {"maraxsis-limestone-crushing", "molten-iron-from-lava", "molten-copper-from-lava", "casting-iron", "casting-copper", "iron-stick", "iron-gear-wheel", "copper-cable", "iron-chest", "transport-belt"})
+utils.add_recipes("maraxsis-casting", {"maraxsis-limestone-crushing", "molten-iron-from-lava", "molten-copper-from-lava", "casting-iron", "casting-copper", "iron-stick", "copper-cable", "iron-chest", "transport-belt"})
 utils.add_recipes("steam-power", {"burner-inserter", "burner-mining-drill"})
 utils.add_recipes("space-platform-thruster", {"maraxsis-atmosphere"})
 utils.add_recipes("production-science-pack", {"rail"})
@@ -133,13 +133,10 @@ for i, result in pairs(data.raw["simple-entity"]["maraxsis-mollusk-husk"].minabl
     end
 end
 
-data.raw.recipe["small-electric-pole"].enabled = false
-data.raw.recipe["wooden-chest"].enabled = false
-data.raw.recipe["burner-mining-drill"].enabled = false
-data.raw.recipe["maraxsis-diesel-submarine"].enabled = false
 data.raw.recipe["pipe"].enabled = true
 data.raw.recipe["pipe-to-ground"].enabled = true
 data.raw.recipe["offshore-pump"].enabled = true
+data.raw.recipe["iron-gear-wheel"].enabled = true
 
 data.raw.recipe["small-electric-pole"].enabled = false
 data.raw.recipe["wooden-chest"].enabled = false
@@ -147,7 +144,6 @@ data.raw.recipe["burner-mining-drill"].enabled = false
 data.raw.recipe["firearm-magazine"].enabled = false
 data.raw.recipe["iron-plate"].enabled = false
 data.raw.recipe["copper-plate"].enabled = false
-data.raw.recipe["iron-gear-wheel"].enabled = false
 data.raw.recipe["stone-furnace"].enabled = false
 data.raw.recipe["stone-brick"].enabled = false
 data.raw.recipe["burner-inserter"].enabled = false
