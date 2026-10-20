@@ -213,10 +213,10 @@ PlanetsLib.rro.soft_insert(data.raw.technology["maraxsis-hydro-plant"].effects, 
     quality = "rare",
 })
 
--- remove processing units from hydro plant
+-- remove processing units and quality module 3 from hydro plant
 local new_ingredients = {}
 for _, ingredient in pairs(data.raw.recipe["maraxsis-hydro-plant"].ingredients) do
-    if ingredient.name ~= "processing-unit" then
+    if ingredient.name ~= "processing-unit" and ingredient.name ~= "quality-module-3" then
         PlanetsLib.rro.soft_insert(new_ingredients, ingredient)
     end
 end
