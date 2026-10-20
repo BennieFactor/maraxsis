@@ -46,7 +46,9 @@ if not data.raw["mining-drill"]["electric-mining-drill"].next_upgrade then
 end
 
 for extractor,extractor_data in pairs(PlanetsLib.constants.ground_diggers["maraxsis"].diggers) do
-    local mask = collision_mask_util.get_mask(data.raw["mining-drill"][extractor])
+    local extractor_prototype = data.raw["mining-drill"][extractor]
+    if not extractor_prototype then goto continue end
+    local mask = collision_mask_util.get_mask()
     mask.layers[maraxsis_dome_collision_mask] = true
 
     -- https://github.com/notnotmelon/maraxsis/issues/342
@@ -73,6 +75,7 @@ for extractor,extractor_data in pairs(PlanetsLib.constants.ground_diggers["marax
     -- PlanetsLib, so they are not part of the mining drill next_upgrade chain. They
     -- inherit their drill's collision mask when PlanetsLib generates them.
     update_collision_masks(extractor)
+    ::continue::
 end
 
 local i = 1
