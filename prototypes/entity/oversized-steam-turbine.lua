@@ -204,7 +204,7 @@ data:extend { {
     corpse = "steam-turbine-remnants",
     dying_explosion = "steam-turbine-explosion",
     alert_icon_shift = util.by_pixel(0, -12),
-    use_mirroring = false,
+    use_mirroring = true,
     resistances = {
         {
             type = "fire",
