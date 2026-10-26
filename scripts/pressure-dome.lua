@@ -858,6 +858,10 @@ function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity,ev
     -- Lay the dome floor down at the new position before moving entities onto it.
     place_tiles(pressure_dome_data)
 
+    -- EPD defines the event as a custom-event prototype. Re-raise it for
+    -- contained entities that had to be cloned, so other mods observe the new
+    -- entity rather than the destroyed original.
+    local custom_event = prototypes.custom_event["even-pickier-dollies-on-entity-moved"]
     for _, move in pairs(moves) do
         local start_pos = move.entity.position
         local start_direction = move.entity.direction
@@ -871,15 +875,15 @@ function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity,ev
             ---@type EvenPickierDolliesRemoteInterfaceDollyMovedEvent
             local event_data = {
                 player_index = event.player_index,
-                moved_entity = move.entity,
+                moved_entity = moved,
                 start_pos = start_pos,
                 start_direction = start_direction,
                 start_unit_number = start_unit_number,
                 tick = game.tick,
-                name = prototypes.custom_event["even-pickier-dollies-on-entity-moved"],
+                name = custom_event.event_id,
             }
 
-            script.raise_event(prototypes.custom_event["even-pickier-dollies-on-entity-moved"], event_data)
+            script.raise_event(custom_event.event_id, event_data)
         end
     end
 
