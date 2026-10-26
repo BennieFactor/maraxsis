@@ -843,7 +843,7 @@ function maraxsis.move_pressure_dome(pressure_dome_data, dx, dy, moved_entity,ev
     add_move(pressure_dome_data.regulator)
     add_move(pressure_dome_data.regulator_fluidbox)
     add_move(pressure_dome_data.combinator)
-    
+
 
     table.sort(moves, function(a, b)
         local a_position, b_position = a.entity.position, b.entity.position
