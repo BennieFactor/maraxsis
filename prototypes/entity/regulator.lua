@@ -19,6 +19,7 @@ regulator.drawing_box_vertical_extension = 0.75
 regulator.energy_source.input_flow_limit = "25MW"
 regulator.energy_usage = "2.5MW"
 regulator.charging_energy = "2.5MW"
+regulator.use_mirroring = true
 
 local sqrt_2 = 1.41421356237
 regulator.charging_offsets = {

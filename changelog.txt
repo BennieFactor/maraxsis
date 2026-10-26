@@ -1,4 +1,165 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.24
+Date: 2026-10-23
+  Changes:
+    - Added a warning when loading saves created before the Factorio 2.1 version of Maraxsis.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.23
+Date: 2026-10-20
+  Changes:
+    - Enabled mirroring on the regulator and oversized steam turbine so they can be flipped
+---------------------------------------------------------------------------------------------------
+Version: 1.40.22
+Date: 2026-10-20
+  Compatibility:
+    - Raised required PlanetsLib version to 2.2.1.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.21
+Date: 2026-10-20
+  Balancing:
+    - Geothermal sulfur now consumes brackish water instead of lava. Crafting time buffed from 3sec -> 2sec.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.20
+Date: 2026-10-20
+  Bugfixes:
+    - Fixed crash on load.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.19
+Date: 2026-10-20
+  Bugfixes:
+    - Added additional check to see if mining drills were deleted by another mod between being declared a sand extractor and when checked by Maraxsis in data-final-fixes.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.18
+Date: 2026-10-20
+  Bugfixes:
+    - FIxed a softlock in any planet start. Removed quality 3 modules from the hydro plant crafting recipe.
+    - With any planet start, fixed softlock due to inability to craft iron gears.
+    - With any planet start, fixed softlock due to inability to craft steel.
+    - With any planet start, several endgame technologies had duplicate hydro science packs in the cost definition.
+    - WIth any planet start, several endgame technologies had duplicate hydro science packs in the cost definition.
+  Changes:
+    - With any planet start, the steam power technology now requires the hydro plant technology instead of the concrete technology.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.17
+Date: 2026-10-20
+  Balancing:
+    - With any planet start, more technologies now require hydraulic science packs.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.16
+Date: 2026-10-20
+  Balancing:
+    - With any planet start, moved advanced casting recipes back to vulcanus. Maraxsis now only unlocks the bare minium foundry casting recipes.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.15
+Date: 2026-10-20
+  Balancing:
+    - Increased the yield from any planet start carbon fiber hand crafting by 10x.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.14
+Date: 2026-10-20
+  Bugfixes:
+    - Fixed softlock in any planet start due to normal quality calcite not being obtainable.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.13
+Date: 2026-10-19
+  Balancing:
+    - With any planet start, reordered the tech tree to prevent extreme tedious manual sulfur harvesting.
+    - With any planet start, wyrm confinement is now unlocked with chemical science rather than logistic science.
+  Changes:
+    - Added 1 geothermal generator to the any planet start starting items.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.12
+Date: 2026-10-19
+  Balancing:
+    - Convert maraxsis start carbon fiber recipe to hand crafting only.
+    - Restrict all recipes added by maraxsis start to be crafted on maraxsis.
+  Bugfixes:
+    - The maraxsis start tungsten ore dissolution recipe is now marked as auto_recycle false.
+  Changes:
+    - Reverted any planet start's changes to the stone centrifuging technology.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.11
+Date: 2026-10-19
+  Balancing:
+    - A breath of fresh air can now only be constructed on maraxsis.
+    - When using any planet start, added an alternative (manual) source of calcite to aid in researching inital crushers.
+    - When using any planet start, the breath of fresh air now generates infinite atmosphere per second, rather than 60/sec.
+  Changes:
+    - The breath of fresh air can no longer be recycled.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.10
+Date: 2026-10-19
+  Compatibility:
+    - Raised required PlanetsLib version to 2.1.2.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.9
+Date: 2026-10-19
+  Balancing:
+    - With any planet start, adjusted the low density structure technology to be green science rather than blue science.
+    - With any planet start, crusher is now unlocked earlier in progression with the low density structure technology rather than the space platform technology.
+  Bugfixes:
+    - Fixed softlock in any planet start by giving you 1 crusher.
+    - Fixed that the "legendary quality on maraxsis" tech did not consume any hydraulic science.
+    - WIth any planet start, the legendary quality tech now properly requires either cryogenic science packs or hydraulic science packs.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.8
+Date: 2026-10-19
+  Balancing:
+    - Cargo landing pads and cargo bays can now be placed inside pressure domes
+---------------------------------------------------------------------------------------------------
+Version: 1.40.7
+Date: 2026-10-19
+  Compatibility:
+    - All standard mining drills from all mods can now be used as sand extractors.
+    - Sand extractor scripting offloaded to PlanetsLib. PlanetsLib version bumped to 2.1.0.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.6
+Date: 2026-10-18
+  Balancing:
+    - Removed "coal liquefaction" from project seadragon tech requirements.
+    - The "bio oil" recipe now returns heavy oil instead of light oil. It can also now be additionally performed inside a chemical reactor. Removed petroleum gas cracking to heavy oil.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.5
+Date: 2026-10-18
+  Balancing:
+    - Salt requirement in the hydraulic science recipe is changed from -1 quality to +1 quality.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.4
+Date: 2026-10-18
+  Balancing:
+    - Increased the max health of Conduit to 300. Increased the heating energy to 1 MW.
+  Bugfixes:
+    - Adjusted scaling of conduit effectiveness to simplify estimations of overall effectiveness.. https://github.com/FluidNatalie/maraxsis/issues/34
+---------------------------------------------------------------------------------------------------
+Version: 1.40.3
+Date: 2026-10-18
+  Bugfixes:
+    - Stop Maraxsis Start from overwriting vanilla foundry/lubricant descriptions
+  Changes:
+    - Switched oversized steam turbines to be "generator" prototype instead of "fusion-generator".
+---------------------------------------------------------------------------------------------------
+Version: 1.40.2
+Date: 2026-10-18
+  Bugfixes:
+    - Fixed that the 5x robot energy usage did not apply in the trench.
+---------------------------------------------------------------------------------------------------
+Version: 1.40.1
+Date: 2026-10-17
+  Bugfixes:
+    - Shift-placing pressure domes on lava places foundation ghosts on the lava. https://github.com/FluidNatalie/maraxsis/issues/22
+  Locale:
+    - Changed warning message when a tile(eg. lava) conflicts with placing the pressure dome. https://github.com/FluidNatalie/maraxsis/issues/22
+---------------------------------------------------------------------------------------------------
+Version: 1.40.0
+Date: 2026-10-17
+  Features:
+    - bundle Maraxsis Start as an Any Planet Start option
+---------------------------------------------------------------------------------------------------
+Version: 1.39.23
+Date: 2026-10-17
+  Bugfixes:
+    - Blocked productivity on atmosphere barrelling recipes
+---------------------------------------------------------------------------------------------------
 Version: 1.39.22
 Date: 2026-10-15
   Bugfixes:
