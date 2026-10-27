@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.40.26
+Date: 2026-10-27
+  Balancing:
+    - Increased yield from stone centrifuging by 10 times.
+  Bugfixes:
+    - Fixed that the crusher did not produce pollution or require heating on aquilo for factorio versions >= 2.1.24
+---------------------------------------------------------------------------------------------------
 Version: 1.40.25
 Date: 2026-10-27
   Compatibility:
