@@ -132,3 +132,16 @@ uranium_fuel_cell.fuel_acceleration_multiplier_quality_bonus = nuclear_fuel.fuel
 uranium_fuel_cell.fuel_top_speed_multiplier_quality_bonus = nuclear_fuel.fuel_top_speed_multiplier_quality_bonus
 
 data.raw["assembling-machine"]["crusher"].surface_conditions = nil
+
+--Factorio 2.1.24 removed the crusher's heating energy and pollution emission.
+--Restore the 2.1.23 values so the crusher behaves the same on the stable and
+--experimental releases. crusher-2 copies this prototype, so the values have to
+--be restored before prototypes/entity/crusher-2.lua runs.
+local vanilla_crusher = data.raw["assembling-machine"]["crusher"]
+if vanilla_crusher then
+    vanilla_crusher.heating_energy = vanilla_crusher.heating_energy or "200kW"
+    vanilla_crusher.energy_source.emissions_per_minute =
+        vanilla_crusher.energy_source.emissions_per_minute or {}
+    vanilla_crusher.energy_source.emissions_per_minute["pollution"] =
+        vanilla_crusher.energy_source.emissions_per_minute["pollution"] or 1
+end
