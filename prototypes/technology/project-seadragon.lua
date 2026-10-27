@@ -91,24 +91,26 @@ rocket.localised_name = {"entity-name.rocket-silo-rocket"}
 rocket.localised_description = {"entity-description.rocket-silo-rocket"}
 rocket.hidden = true
 rocket.hidden_in_factoriopedia = true
-rocket.rocket_sprite = {
-    filename = "__maraxsis__/graphics/entity/rocket-silo/rocket.png",
-    height = 290,
-    width = 290,
-    scale = 1.2,
-    shift = {0, 6}
-}
-rocket.rocket_rise_offset = {0, -7}
-rocket.rocket_smoke_bottom1_animation.scale = 0.01
-rocket.rocket_smoke_bottom1_animation.hr_version = nil
-rocket.rocket_smoke_bottom2_animation.scale = 0.01
-rocket.rocket_smoke_bottom2_animation.hr_version = nil
-rocket.rocket_smoke_top1_animation.scale = 0.01
-rocket.rocket_smoke_top1_animation.hr_version = nil
-rocket.rocket_smoke_top2_animation.scale = 0.01
-rocket.rocket_smoke_top2_animation.hr_version = nil
-rocket.rocket_smoke_top3_animation.scale = 0.01
-rocket.rocket_smoke_top3_animation.hr_version = nil
+if settings.startup["maraxsis-fish-rocket"].value == true then
+    rocket.rocket_sprite = {
+        filename = "__maraxsis__/graphics/entity/rocket-silo/rocket.png",
+        height = 290,
+        width = 290,
+        scale = 1.2,
+        shift = {0, 6}
+    }
+    rocket.rocket_rise_offset = {0, -7}
+    rocket.rocket_smoke_bottom1_animation.scale = 0.01
+    rocket.rocket_smoke_bottom1_animation.hr_version = nil
+    rocket.rocket_smoke_bottom2_animation.scale = 0.01
+    rocket.rocket_smoke_bottom2_animation.hr_version = nil
+    rocket.rocket_smoke_top1_animation.scale = 0.01
+    rocket.rocket_smoke_top1_animation.hr_version = nil
+    rocket.rocket_smoke_top2_animation.scale = 0.01
+    rocket.rocket_smoke_top2_animation.hr_version = nil
+    rocket.rocket_smoke_top3_animation.scale = 0.01
+    rocket.rocket_smoke_top3_animation.hr_version = nil
+end
 
 data:extend { rocket }
 
