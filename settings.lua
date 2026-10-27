@@ -26,6 +26,14 @@ data:extend {{
     forced_value = true,
 }}
 
+data:extend {{
+    type = "bool-setting",
+    name = "maraxsis-fish-rocket",
+    setting_type = "startup",
+    default_value = true,
+    order = "a",
+}}
+
 -- Offer Maraxsis as a starting planet for Any Planet Start. The inverted tech
 -- tree and the rest of the maraxsis-start content only load when it is picked.
 if mods["any-planet-start"] then
