@@ -110,6 +110,37 @@ if settings.startup["maraxsis-fish-rocket"].value == true then
     rocket.rocket_smoke_top2_animation.hr_version = nil
     rocket.rocket_smoke_top3_animation.scale = 0.01
     rocket.rocket_smoke_top3_animation.hr_version = nil
+
+else
+    rocket.rocket_sprite =
+    {
+    layers =
+      {
+        util.sprite_load("__maraxsis__/graphics/entity/rocket-silo/maraxsis-new-rocket/rocket-static-pod",
+      {
+        dice_y = 4,
+        shift = util.by_pixel( 0, 17.0+rocket_shift),
+        scale = 0.5
+      }),
+      util.sprite_load("__maraxsis__/graphics/entity/rocket-silo/maraxsis-new-rocket/rocket-static-emission",
+      {
+        dice_y = 4,
+        shift = util.by_pixel( 0, 17+rocket_shift),
+        draw_as_glow = true,
+        blend_mode = "additive",
+        scale = 0.5
+      })
+    }
+    }
+    rocket.rocket_flame_animation = util.sprite_load("__maraxsis__/graphics/entity/rocket-silo/maraxsis-new-rocket/rocket-jet",
+    {
+      shift = util.by_pixel( 0, 17+rocket_shift),
+      draw_as_glow = true,
+      blend_mode = "additive",
+      scale = 0.5,
+      frame_count = 8,
+      animation_speed = 0.5
+    })
 end
 
 data:extend { rocket }
