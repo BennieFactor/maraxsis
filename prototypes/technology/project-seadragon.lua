@@ -85,6 +85,7 @@ data:extend {{
 }}
 
 -- Adapted from Rubia & Alternative Rocket Sprite Extension.
+local rocket_shift = 48
 local rocket = util.table.deepcopy(data.raw["rocket-silo-rocket"]["rocket-silo-rocket"])
 rocket.name = "maraxsis-rocket-silo-rocket"
 rocket.localised_name = {"entity-name.rocket-silo-rocket"}
@@ -181,6 +182,9 @@ for surface in pairs(maraxsis_constants.MARAXSIS_SURFACES) do
         "maraxsis-runtime-entity-replacement",
         "rocket-silo"
     )
+    --separately (create_planet_entity_variant doesn't support all fields we edit)
+    data.raw["rocket-silo"]["maraxsis-rocket-silo"].graphics_set = nil --these are the welding and engine animation on the new new silo
+    data.raw["rocket-silo"]["maraxsis-rocket-silo"].working_sound.sound_accents = nil --these are the welding sounds
 
     -- https://github.com/notnotmelon/maraxsis/issues/417
     PlanetsLib.assign_rocket_part_recipe(surface, maraxsis_rocket_part.name)
