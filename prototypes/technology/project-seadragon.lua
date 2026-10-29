@@ -160,6 +160,23 @@ for surface in pairs(maraxsis_constants.MARAXSIS_SURFACES) do
             flags = {"placeable-player", "player-creation", "not-in-made-in"},
             hidden = true,
             hidden_in_factoriopedia = true,
+            base_day_sprite =
+                {
+                  filename = "__maraxsis__/graphics/entity/rocket-silo/06-rocket-silo.png",
+                  dice_y = 3,
+                  width = 608,
+                  height = 596,
+                  shift = util.by_pixel(3, -1),
+                  scale = 0.5
+                },
+            base_front_sprite =
+                {
+                  filename = "__maraxsis__/graphics/entity/rocket-silo/14-rocket-silo-front.png",
+                  width = 580,
+                  height = 262,
+                  shift = util.by_pixel(-1, 78),
+                  scale = 0.5
+                },
         },
         "maraxsis-runtime-entity-replacement",
         "rocket-silo"
